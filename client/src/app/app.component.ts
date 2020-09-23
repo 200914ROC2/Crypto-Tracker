@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,6 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'client';
+export class AppComponent implements OnInit {
+  
+  getAllCurrencyPrices() {
+    // go get currency prices and make the cards
+  }
+
+  ngOnInit() {
+    this.getAllCurrencyPrices();
+  }
 }
