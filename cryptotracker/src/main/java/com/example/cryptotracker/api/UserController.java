@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("api/user")
+//Temporary
 @RestController
 public class UserController {
 
@@ -18,12 +18,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/api/register")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
 
-    @GetMapping
+    @GetMapping("/api/get")//for testing
     public List<User> getAllUser(){
         return userService.getAllUser();
     }
