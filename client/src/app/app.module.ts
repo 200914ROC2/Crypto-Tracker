@@ -7,6 +7,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ButtonComponent } from './button/button.component';
 import { BrowseComponent } from './browse/browse.component';
 import { InputComponent } from './input/input.component';
+import { HomeModule } from './home/home.module';
+import { RegisterModule } from './register/register.module';
+import { LoginModule } from './login/login.module';
+import { CurrenciesModule } from './currencies/currencies.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { InputComponent } from './input/input.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule,
+    RegisterModule,
+    LoginModule,
+    CurrenciesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
