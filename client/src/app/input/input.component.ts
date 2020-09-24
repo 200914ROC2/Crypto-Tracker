@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
+  @Input() handleChange = null;
 
   constructor() { }
+
+  onChange(event) {
+    event.preventDefault();
+    this.handleChange(event.target.value);
+  }
 
   ngOnInit(): void {
   }

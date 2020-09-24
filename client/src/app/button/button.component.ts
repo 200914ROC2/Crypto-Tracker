@@ -7,32 +7,35 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Input() content = '';
-
-  
-
-  submitDateRange() {
-
-  }
-
-  submitRegistration() {
-
-  }
-
-  submitLogin() {
-
-  }
-
-  addToPortfolio() {
-
-  }
-
-  deleteFromPortfolio() {
-
-  }
+  @Input() handleClick = null;
 
   constructor() { }
 
-  ngOnInit(): void {
+  onClick(event) {
+    event.preventDefault();
+    this.handleClick();
   }
 
+  ngOnInit(): void {
+  }
+  
+  // submitDateRange() {
+
+  // }
+
+  // submitRegistration() {
+
+  // }
+
+  // submitLogin() {
+
+  // }
+
+  // addToPortfolio() {
+
+  // }
+
+  // deleteFromPortfolio() {
+
+  // }
 }
