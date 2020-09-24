@@ -23,10 +23,10 @@ import { CurrenciesModule } from './currencies/currencies.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule,
     RegisterModule,
     LoginModule,
-    CurrenciesModule
+    CurrenciesModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
