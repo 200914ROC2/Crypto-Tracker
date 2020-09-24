@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +11,6 @@ import { InputComponent } from './input/input.component';
 import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
-import { CurrenciesModule } from './currencies/currencies.module';
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import { CurrenciesModule } from './currencies/currencies.module';
     AppRoutingModule,
     RegisterModule,
     LoginModule,
-    CurrenciesModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
