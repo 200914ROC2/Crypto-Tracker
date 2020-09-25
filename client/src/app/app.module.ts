@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
+import { CurrenciesModule } from './currencies/currencies.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginModule } from './login/login.module';
     RegisterModule,
     LoginModule,
     HomeModule,
+    CurrenciesModule,
     HttpClientModule
   ],
   providers: [],
