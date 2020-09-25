@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetCurrenciesService } from '../get-currencies.service'
+import { GetCurrenciesService } from '../../get-currencies.service'
 
 @Component({
   selector: 'app-browse',
@@ -32,3 +32,5 @@ export class BrowseComponent implements OnInit {
   ngOnInit() { }
 
 }
+
+
