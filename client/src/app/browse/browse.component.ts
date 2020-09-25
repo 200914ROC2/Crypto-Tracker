@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetCurrenciesService } from '../get-currencies.service'
 
 @Component({
   selector: 'app-browse',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browse.component.css']
 })
 export class BrowseComponent implements OnInit {
+
+  currencies: any;
+
+  constructor(private getCurrenciesService: GetCurrenciesService) {
+   }
 
   getSearchedCurrency() {
     console.log('inside getSearchedCurrency()')
@@ -15,9 +21,14 @@ export class BrowseComponent implements OnInit {
     console.log('inside resetCurrencySearch()')
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  currencySearch() {
+    console.log('inside currencySearch');
+    this.getCurrenciesService.getCurrencies().subscribe((response) => {
+      console.log(response);
+    })
   }
+
+
+  ngOnInit() { }
 
 }
