@@ -1,1 +1,20 @@
-<p>login-home works!</p>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-12">
+            <h4 class="text-center">Login To Your Account</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <app-input label="Username" type="text" (typed)="setUsername($event)"></app-input>
+                        <app-input label="Password" type="password" (typed)="setPassword($event)"></app-input>
+                        <app-button content="Login" type="submit" (clicked)="login()"></app-button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
