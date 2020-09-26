@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 //Temporary
@@ -20,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/api/register")
-    public void addUser(@RequestBody User user){
+    public void addUser(@Valid @NotNull @RequestBody User user){
         userService.addUser(user);
     }
 

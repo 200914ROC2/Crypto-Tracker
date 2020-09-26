@@ -2,14 +2,21 @@ package com.example.cryptotracker.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
     private int id;
+
+    @NotBlank
     private final String username;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String email;
 
     private List<Crypto> portfolio;
