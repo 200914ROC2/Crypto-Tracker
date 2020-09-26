@@ -7,12 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  user = "User";
   
-  getAllCurrencyPrices() {
-    // go get currency prices and make the cards
+  logout() {
+    this.user = null;
   }
 
   ngOnInit() {
-    this.getAllCurrencyPrices();
+    
   }
 }

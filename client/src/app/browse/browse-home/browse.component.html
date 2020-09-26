@@ -1,5 +1,6 @@
 <div class="search-group">
-    <app-input></app-input>
+    <app-input [type]="'text'" [label]="'Filter Currencies'" (typed)="filterCurrencies($event)"></app-input>
+    {{filterText}}
     <app-button (click)="getSearchedCurrency()" [content]="'Search'"></app-button>
     <app-button (click)="resetCurrencySearch()" [content]="'Reset'"></app-button>
 </div>

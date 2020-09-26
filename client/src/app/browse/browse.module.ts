@@ -1,21 +1,22 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RegisterRoutingModule } from './register-routing.module';
-import { RegisterHomeComponent } from './register-home/register-home.component';
+import { BrowseComponent } from './browse-home/browse.component';
 import { InputModuleModule } from '../input-module/input-module.module'
 import { ButtonModuleModule } from '../button-module/button-module.module';
 
 
 @NgModule({
   declarations: [
-    RegisterHomeComponent
+    BrowseComponent
   ],
   imports: [
     CommonModule,
-    RegisterRoutingModule,
     InputModuleModule,
     ButtonModuleModule
+  ],
+  exports: [
+      BrowseComponent
   ]
 })
-export class RegisterModule { }
+export class BrowseModule { }
