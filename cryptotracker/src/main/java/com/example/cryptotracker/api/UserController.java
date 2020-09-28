@@ -3,11 +3,14 @@ package com.example.cryptotracker.api;
 import com.example.cryptotracker.model.User;
 import com.example.cryptotracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@RequestMapping("api/user")
+//Temporary
 @RestController
 public class UserController {
 
@@ -18,13 +21,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public void addUser(@RequestBody User user){
+    @PostMapping("/api/register")
+    public void addUser(@Valid @NotNull @RequestBody User user){
         userService.addUser(user);
     }
 
-    @GetMapping
+    @GetMapping("/api/get")//for testing
     public List<User> getAllUser(){
-        return userService.getAllUser();
+        return userService.getAllUsers();
     }
 }

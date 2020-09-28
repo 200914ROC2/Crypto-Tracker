@@ -15,15 +15,22 @@ public class UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserService(@Qualifier("fakeDao") UserDao personDao) {
-        this.userDao = personDao;
+    public UserService(@Qualifier("userdao") UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public int addUser(User user){
+    public User addUser(User user){
         return userDao.insertUser(user);
     }
+    
+    public User updateUser(User user) {
+    	return userDao.updateUser(user);
+    }
 
-    public List<User> getAllUser(){
-        return userDao.getAllUser();
+    public User getUser(String username, String password) {
+    	return userDao.getUser(username, password);
+    }
+    public List<User> getAllUsers(){
+        return userDao.getAllUsers();
     }
 }

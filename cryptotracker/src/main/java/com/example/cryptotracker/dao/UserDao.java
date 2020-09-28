@@ -4,16 +4,17 @@ import com.example.cryptotracker.model.User;
 
 import java.util.List;
 import java.util.UUID;
-
+//Temporary
 public interface UserDao {
 
+    User insertUser(User user);
 
-    int insertUser(UUID id, User user);
+    User updateUser(User user);
+    
+    User getUser(String username, String password);
 
-    default int insertUser(User user){
-        UUID id = UUID.randomUUID();
-        return insertUser(id,user);
-    }
-
-    List<User> getAllUser();
+    List<User> getAllUsers();
+    
+    
+    
 }
