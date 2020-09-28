@@ -11,6 +11,8 @@ public interface UserDao {
 
     User updateUser(User user);
     
+    void updateUserPortfolio();
+    
     User getUser(String username, String password);
 
     List<User> getAllUsers();
