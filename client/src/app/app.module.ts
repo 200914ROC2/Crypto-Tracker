@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { CurrenciesModule } from './currencies/currencies.module';
+import { CurrencyPreviewModule } from './currency-preview/currency-preview.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CurrenciesModule } from './currencies/currencies.module';
     LoginModule,
     HomeModule,
     CurrenciesModule,
-    HttpClientModule
+    HttpClientModule,
+    CurrencyPreviewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
