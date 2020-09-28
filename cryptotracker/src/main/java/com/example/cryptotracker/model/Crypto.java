@@ -2,10 +2,13 @@ package com.example.cryptotracker.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
+
 //AKA Portfolio
 public class Crypto {
 
     int id;
+    @NotBlank
     String symbol;
 
     public Crypto(@JsonProperty("id") int id,
