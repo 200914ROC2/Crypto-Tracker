@@ -45,14 +45,19 @@ public class UserController {
     }
     
     //api/portfolio/remove Delete {"symbol"}
-    @DeleteMapping("api/portfolio/remove")
+    @DeleteMapping("/api/portfolio/remove")
     public List<Crypto> removeFromPortfolio(){
     	return userService.removeFromPortfolio();
     }
     
-
-    //still need methds for: 
     //api/login Post {"username", "password"} returns {"username"}
+    @PostMapping("/api/login")
+    public User getUser(String username, String password) {
+    	return userService.getUser(username, password);
+    }
+    
+    
+    //still need methds for: 
     //api/logout Get 
   
     

@@ -3,6 +3,7 @@ package com.example.cryptotracker.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -31,22 +32,21 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public User updateUser(User user) {
-		String sqlUserInfo = "update users set email = 'orange@gmail.com',\n" + 
+		String sql = "update users set email = 'orange@gmail.com',\n" + 
 				"hashed_password = 'newPass'\n" + 
-				"where username = 'becca' and hashed_password = 'password';";
-		
-		String sqlPortfolio = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";
-		
-		return null;
+				"where username = 'becca' and hashed_password = 'password';";		
+		return null; 
+//				jdbcTemplate.query(sql, (resultSet,i) -> {
+//			int id = 
+//		});
 	}
 
 	@Override
 	public User getUser(String username, String password) {
-		String sql = "select u.user_id, u.username , u.email , u.hashed_password, p.currency from users u  \n" + 
-				"join portfolio p on (u.username = p.username)\n" + 
-				"where u.username = '?' and u.hashed_password = '?';";
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n" + 
+				"where u.username = ? and u.hashed_password = ?";
+		return jdbcTemplate.queryForObject(sql, new Object[]{username, password},
+				BeanPropertyRowMapper.newInstance(User.class));
 	}
 
 	@Override
@@ -62,16 +62,16 @@ public class UserDataAccessService implements UserDao {
 					//test only
 		});
 	}
-
+	
 	@Override
-	public void updateUserPortfolio() {
+	public List<Crypto> getPortfolio() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
 	public List<Crypto> addToPortfolio() {
-		// TODO Auto-generated method stub
+		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";
 		return null;
 	}
 

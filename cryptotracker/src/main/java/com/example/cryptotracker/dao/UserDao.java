@@ -13,12 +13,12 @@ public interface UserDao {
 	User insertUser(User user);
 
     User updateUser(User user);
-    
-    void updateUserPortfolio();
-    
+        
     User getUser(String username, String password);
 
     List<User> getAllUsers();
+    
+    List<Crypto> getPortfolio();
 
 	List<Crypto> addToPortfolio();
 
