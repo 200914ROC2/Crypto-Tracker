@@ -1,0 +1,27 @@
+<div class="card" (click)="onClick($event)">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="card border-0">
+                            <img [src]="imageUrl" class="card-img">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        
+                    </div>
+                    <div class="col-3">
+                        <h4>{{ symbol }}</h4>
+                    </div>
+                    <div class="col-3">
+                        <p>{{ name }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{ price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
