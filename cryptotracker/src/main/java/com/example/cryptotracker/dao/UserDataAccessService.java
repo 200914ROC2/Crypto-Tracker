@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.example.cryptotracker.model.User;
 
 //check what repository should actually be enclosed)
-@Repository("fakeDao")
+@Repository("userdao")
 public class UserDataAccessService implements UserDao {
 
 	//fakeDAOService had a list in place of db.  
