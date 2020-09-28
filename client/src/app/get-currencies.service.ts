@@ -20,8 +20,8 @@ export class GetCurrenciesService {
     return this.http.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD')
   }
 
-  getSearchedCurrency() {
-    return this.http.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD')
+  getSearchedCurrency(filterText: string) {
+    return this.http.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + filterText + '&tsyms=USD')
   }
 
 }
