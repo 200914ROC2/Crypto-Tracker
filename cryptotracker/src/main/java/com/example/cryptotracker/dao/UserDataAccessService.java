@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 
 //check what repository should actually be enclosed)
@@ -66,6 +67,18 @@ public class UserDataAccessService implements UserDao {
 	public void updateUserPortfolio() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Crypto> addToPortfolio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Crypto> removeFromPortfolio() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

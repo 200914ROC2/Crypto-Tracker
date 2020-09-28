@@ -2,6 +2,7 @@ package com.example.cryptotracker.service;
 
 
 import com.example.cryptotracker.dao.UserDao;
+import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,4 +34,16 @@ public class UserService {
     public List<User> getAllUsers(){
         return userDao.getAllUsers();
     }
+
+	public List<Crypto> getUserPortfolio() {
+		return UserDao.getUserPortfolio;
+	}
+
+	public List<Crypto> addToPortfolio() {
+		return userDao.addToPortfolio();
+	}
+
+	public List<Crypto> removeFromPortfolio() {
+		return userDao.removeFromPortfolio();
+	}
 }
