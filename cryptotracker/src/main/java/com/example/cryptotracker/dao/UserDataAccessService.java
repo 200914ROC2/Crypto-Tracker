@@ -22,9 +22,12 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public User updateUser(User user) {
-		String sql = "";
+		String sqlUserInfo = "update users set email = 'orange@gmail.com',\n" + 
+				"hashed_password = 'newPass'\n" + 
+				"where username = 'becca' and hashed_password = 'password';";
 		
-		// TODO Auto-generated method stub
+		String sqlPortfolio = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";
+		
 		return null;
 	}
 
