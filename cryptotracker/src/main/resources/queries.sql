@@ -1,24 +1,20 @@
 select * from users;
-select * from currencies c ;
-select * from users_currencies uc ;
+select * from portfolio ;
+
 
 insert into users (username,email,hashed_password) values ('?','?','?');
 
-
 select email, hashed_password from users where username = '?'; 
 
-insert into currencies (record_id, currency) values (default, '?'); 
-insert into users_currencies (username, currency) values ('?','?');
+insert into portfolio (record_id, username, currency) values (default, '?','?');
 
-select currency from users_currencies where username = '?';
+select currency from portfolio where username = '?';
 
-select c.currency from users u  
-join users_currencies uc on (u.username = uc.username)
-join currencies c on (uc.currency = c.currency)
+select p.currency from users u  
+join portfolio p on (u.username = p.username)
 where u.username = '?' and u.hashed_password = '?';
 
+select p.currency from users u  
+join portfolio p on (u.username = p.username)
+where u.username = 'becca' and u.hashed_password = 'password';
 
-select c.currency, u.username from users u  
-join users_currencies uc on (u.username = uc.username)
-join currencies c on (uc.currency = c.currency)
-where u.username = '?' and u.hashed_password = '?';

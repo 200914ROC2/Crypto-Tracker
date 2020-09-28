@@ -28,6 +28,6 @@ public class UserController {
 
     @GetMapping("/api/get")//for testing
     public List<User> getAllUser(){
-        return userService.getAllUser();
+        return userService.getAllUsers();
     }
 }

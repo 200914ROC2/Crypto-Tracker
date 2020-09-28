@@ -7,8 +7,14 @@ import java.util.UUID;
 //Temporary
 public interface UserDao {
 
+    User insertUser(User user);
 
-    int insertUser(User user);
+    User updateUser(User user);
+    
+    User getUser(String username, String password);
 
-    List<User> getAllUser();
+    List<User> getAllUsers();
+    
+    
+    
 }
