@@ -21,8 +21,9 @@ public class UserDataAccessService implements UserDao {
 	
 	@Override
 	public User insertUser(User user) {
-		String sql = "insert into users (username,email,hashed_password) values ('?','?','?')";
-		return user;
+		String sqlUserInfo = "insert into users (username,email,hashed_password) values ('"
+	+ user.getUsername() + "', '" + user.getEmail() + "', '" + user.getPassword() + "'); ";
+			return user;
 		// TODO Auto-generated method stub
 
 	}
@@ -49,8 +50,7 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public List<User> getAllUsers() {
-		final String sql = "select u.user_id, u.username , u.email , u.hashed_password, p.currency from users u  \n" + 
-				"join portfolio p on (u.username = p.username);\n";
+		final String sql = "select u.user_id, u.username , u.email , u.hashed_password from users u;";
 		return jdbcTemplate.query(sql, (resultSet,i) -> {
 			int id = resultSet.getInt("user_id");
 			String username = resultSet.getString("username");
@@ -58,6 +58,7 @@ public class UserDataAccessService implements UserDao {
 			String password = resultSet.getString("hashed_password");
 					
 					return new User(id,username, password, email);
+					//test only
 		});
 	}
 
