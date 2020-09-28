@@ -12,6 +12,8 @@ export class BrowseComponent implements OnInit {
   filteredCurrencies;
   singleCurrency;
   filterText: string;
+  logoUrl;
+  price;
 
   constructor(private getCurrenciesService: GetCurrenciesService) {
   }
@@ -25,9 +27,12 @@ export class BrowseComponent implements OnInit {
 
   getSearchedCurrency() {
     console.log('inside getSearchedCurrency()');
-    this.getCurrenciesService.getSearchedCurrency().subscribe((response) => {
+    this.filterText = this.filterText.toUpperCase();
+    this.getCurrenciesService.getSearchedCurrency(this.filterText).subscribe((response) => {
       this.singleCurrency = response;
-      console.log(this.singleCurrency);
+      this.price = this.singleCurrency.RAW[this.filterText].USD.PRICE;
+      this.logoUrl = 'https://cryptocompare.com' + this.singleCurrency.RAW[this.filterText].USD.IMAGEURL;
+      console.log(this.singleCurrency.RAW[this.filterText].USD);
     })
   }
 
@@ -38,10 +43,10 @@ export class BrowseComponent implements OnInit {
     console.log('filterText after: ' + this.filterText);
   }
 
-  currencySearch() {
+  getCurrencies() {
     console.log('inside currencySearch');
-    this.singleCurrency = this.getCurrenciesService.getCurrencies().subscribe((response) => {
-      this.currencies = response;
+    this.singleCurrency = this.getCurrenciesService.getCurrencies().subscribe((response: any) => {
+      this.currencies = response.Data;
       console.log(response);
     })
   }
