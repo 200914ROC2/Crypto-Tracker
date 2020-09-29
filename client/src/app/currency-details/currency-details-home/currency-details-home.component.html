@@ -30,6 +30,7 @@
         <div class="card">
             <div class="card-body">
                 <app-plot-home *ngIf="render24Hour" title="Price History - Last 24 Hours" [xArray]="x24Hour" [yArray]="y24Hour"></app-plot-home>
+                <app-plot-home *ngIf="render30Day" title="Price History - Last 30Days" [xArray]="x30Day" [yArray]="y30Day"></app-plot-home>
             </div>
         </div>
     </div>
