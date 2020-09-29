@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowseComponent } from './browse-home/browse.component';
 import { InputModuleModule } from '../input-module/input-module.module'
 import { ButtonModuleModule } from '../button-module/button-module.module';
+import { CurrencyPreviewModule } from '../currency-preview/currency-preview.module'
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ButtonModuleModule } from '../button-module/button-module.module';
   imports: [
     CommonModule,
     InputModuleModule,
-    ButtonModuleModule
+    ButtonModuleModule,
+    CurrencyPreviewModule
   ],
   exports: [
       BrowseComponent
