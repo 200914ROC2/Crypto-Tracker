@@ -8,9 +8,9 @@ import * as moment from 'moment';
   styleUrls: ['./currency-details-home.component.css']
 })
 export class CurrencyDetailsHomeComponent implements OnInit {
-  @Input() name = "Bitcoin";
-  @Input() symbol = "BTC";
-  @Input() imageUrl = "https://cryptocompare.com/media/19633/btc.png";
+  @Input() name = "";
+  @Input() symbol = "";
+  @Input() imageUrl = "";
 
   @Output() back = new EventEmitter<boolean>();
 
@@ -19,6 +19,9 @@ export class CurrencyDetailsHomeComponent implements OnInit {
   render24Hour: boolean = false;
   x24Hour: Array<string> = [];
   y24Hour: Array<number> = [];
+  render30Day: boolean = false;
+  x30Day: Array<string> = [];
+  y30Day: Array<number> = [];
 
   goBack() {
     this.back.emit(true);
@@ -33,6 +36,16 @@ export class CurrencyDetailsHomeComponent implements OnInit {
       }
       this.price = this.y24Hour[this.y24Hour.length - 1].toString();
       this.render24Hour = true;
+    });
+
+    this.getCurrenciesService.get30DayData(this.symbol).subscribe((response: any) => {
+      for (let data of response.Data.Data) {
+        const date = moment.unix(data.time);
+        this.x30Day.push(date.format("YYYY-MM-DD kk:mm:ss"));
+        this.y30Day.push(data.close);
+      }
+      this.price = this.y30Day[this.y30Day.length - 1].toString();
+      this.render30Day = true;
     });
   }
 
