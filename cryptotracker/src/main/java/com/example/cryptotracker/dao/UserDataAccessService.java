@@ -22,11 +22,12 @@ public class UserDataAccessService implements UserDao {
 	    }
 	
 	@Override
-	public User insertUser(User user) {
-		String sqlUserInfo = "insert into users (username,email,hashed_password) values ('"
-	+ user.getUsername() + "', '" + user.getEmail() + "', '" + user.getPassword() + "'); ";
-		return jdbcTemplate.queryForObject(sqlUserInfo, new Object[]{user.getUsername(), user.getPassword()},
-				BeanPropertyRowMapper.newInstance(User.class));
+	public User insertUser(User user) {// Working now Might need a try catch?
+		String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
+		if(jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword()) == 1){
+			//not sure how to make if there is a better way but just call a search query base on the user and return it.
+		}
+		return user;
 	}
 
 	@Override
