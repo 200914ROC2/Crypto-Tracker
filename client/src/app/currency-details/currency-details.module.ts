@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CurrencyDetailsHomeComponent } from './currency-details-home/currency-details-home.component';
 import { PlotModule } from '../plot/plot.module';
+import { ButtonModuleModule } from '../button-module/button-module.module';
 
 
 
@@ -9,7 +10,8 @@ import { PlotModule } from '../plot/plot.module';
   declarations: [CurrencyDetailsHomeComponent],
   imports: [
     CommonModule,
-    PlotModule
+    PlotModule,
+    ButtonModuleModule
   ],
   exports: [
     CurrencyDetailsHomeComponent

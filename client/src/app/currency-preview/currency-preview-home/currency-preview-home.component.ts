@@ -11,13 +11,17 @@ export class CurrencyPreviewHomeComponent implements OnInit {
   @Input() imageUrl = "";
   @Input() price = "";
 
-  @Output() clicked = new EventEmitter<string>();
+  @Output() clicked = new EventEmitter<Object>();
 
   constructor() { }
 
   onClick(event: any) {
     event.preventDefault();
-    this.clicked.emit(this.symbol);
+    this.clicked.emit({
+      name: this.name,
+      symbol: this.symbol,
+      imageUrl: this.imageUrl
+    });
   }
 
   ngOnInit(): void {

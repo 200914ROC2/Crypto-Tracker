@@ -25,7 +25,7 @@ export class GetCurrenciesService {
   }
 
   get24HourData(symbol: string) {
-    return this.http.get(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=1440`)
+    return this.http.get(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=1439`)
   }
 }
 
