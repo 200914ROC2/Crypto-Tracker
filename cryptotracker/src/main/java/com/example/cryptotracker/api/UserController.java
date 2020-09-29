@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -45,14 +46,14 @@ public class UserController {
     }
     
     //api/portfolio/remove Delete {"symbol"}
-    @DeleteMapping("/api/portfolio/remove")
+    @DeleteMapping("api/portfolio/remove")
     public List<Crypto> removeFromPortfolio(){
     	return userService.removeFromPortfolio();
     }
     
     //api/login Post {"username", "password"} returns {"username"}
     @PostMapping("/api/login")
-    public User getUser(String username, String password) {
+    public Optional<User> getUser(String username, String password) {
     	return userService.getUser(username, password);
     }
     

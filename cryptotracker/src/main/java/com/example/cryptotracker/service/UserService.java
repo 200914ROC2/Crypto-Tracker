@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,7 +17,7 @@ public class UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserService(@Qualifier("userdao") UserDao userDao) {
+    public UserService(@Qualifier("userDao") UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -28,7 +29,7 @@ public class UserService {
     	return userDao.updateUser(user);
     }
 
-    public User getUser(String username, String password) {
+    public Optional<User> getUser(String username, String password) {
     	return userDao.getUser(username, password);
     }
     public List<User> getAllUsers(){

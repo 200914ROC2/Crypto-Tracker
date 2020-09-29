@@ -4,6 +4,7 @@ import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 //Temporary
 public interface UserDao {
@@ -14,7 +15,7 @@ public interface UserDao {
 
     User updateUser(User user);
         
-    User getUser(String username, String password);
+    Optional<User> getUser(String username, String password);
 
     List<User> getAllUsers();
     
