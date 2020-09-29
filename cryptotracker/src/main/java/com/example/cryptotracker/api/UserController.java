@@ -53,10 +53,13 @@ public class UserController {
     
     //api/login Post {"username", "password"} returns {"username"}
     @PostMapping("/api/login")
-    public Optional<User> getUser(String username, String password) {
+    public User getUser(String username, String password) {
     	return userService.getUser(username, password);
     }
-    
+    @PostMapping("/api/loginOptional")
+    public Optional<User> getOptionalUser(String username, String password) {
+    	return userService.getOptionalUser(username, password);
+    }  
     
     //still need methds for: 
     //api/logout Get 

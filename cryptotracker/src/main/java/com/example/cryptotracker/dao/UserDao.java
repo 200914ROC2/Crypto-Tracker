@@ -13,7 +13,7 @@ public interface UserDao {
 
 	User insertUser(User user);
         
-    Optional<User> getUser(String username, String password);
+    User getUser(String username, String password);
 
     List<User> getAllUsers();
     
@@ -22,6 +22,8 @@ public interface UserDao {
 	List<Crypto> addToPortfolio();
 
 	List<Crypto> removeFromPortfolio();
+
+	Optional<User> getOptionalUser(String username, String password);
     
     
     

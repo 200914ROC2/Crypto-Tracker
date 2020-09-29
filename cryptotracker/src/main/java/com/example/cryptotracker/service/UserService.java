@@ -25,7 +25,7 @@ public class UserService {
         return userDao.insertUser(user);
     }
 
-    public Optional<User> getUser(String username, String password) {
+    public User getUser(String username, String password) {
     	return userDao.getUser(username, password);
     }
     public List<User> getAllUsers(){
@@ -42,5 +42,9 @@ public class UserService {
 
 	public List<Crypto> removeFromPortfolio() {
 		return userDao.removeFromPortfolio();
+	}
+
+	public Optional<User> getOptionalUser(String username, String password) {
+		return userDao.getOptionalUser(username, password);
 	}
 }
