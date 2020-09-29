@@ -15,5 +15,7 @@
     [name]="currency.CoinInfo.FullName" 
     [symbol]="currency.CoinInfo.Name" 
     [imageUrl]="'https://cryptocompare.com' + currency.CoinInfo.ImageUrl"
-    [price]="currency.RAW.USD.PRICE">
+    [price]="currency.RAW.USD.PRICE"
+    (clicked)="viewDetails($event)"
+    >
 </app-currency-preview-home>
