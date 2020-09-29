@@ -12,8 +12,6 @@ public interface UserDao {
     List<Crypto> getUserPortfolio = null;
 
 	User insertUser(User user);
-
-    User updateUser(User user);
         
     Optional<User> getUser(String username, String password);
 

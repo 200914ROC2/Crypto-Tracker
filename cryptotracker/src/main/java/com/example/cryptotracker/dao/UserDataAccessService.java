@@ -25,30 +25,16 @@ public class UserDataAccessService implements UserDao {
 	@Override
 	public User insertUser(User user) {// Working now Might need a try catch?
 		String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
-		if(jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword()) == 1){
-			//not sure how to make if there is a better way but just call a search query base on the user and return it.
+		try {
+		jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
+		} catch(Exception e)   {
+			//need to do something to indicate that user wasn't inserted because username exists already
 		}
 		return user;
-//my old method
-//	public User insertUser(User user) {
-//		String sqlUserInfo = "insert into users (username,email,hashed_password) values ('" + user.getUsername()
-//				+ "', '" + user.getEmail() + "', '" + user.getPassword() + "'); ";
-//		return null;
-
+		//needs to return NOT THE INPUT. 
+		
 	}
-
-	@Override
-	public User updateUser(User user) {
-		String sql = "update users set email = 'orange@gmail.com',\n" + 
-				"hashed_password = 'newPass'\n" + 
-				"where username = ? and hashed_password = ?;";		
-		return null; 
-
-//				jdbcTemplate.query(sql, (resultSet,i) -> {
-//			int id = 
-//		});
-	}
-
+	
 //	old
 	//public User getUser(String username, String password) {
 //		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u " + 
@@ -95,8 +81,8 @@ public class UserDataAccessService implements UserDao {
 	@Override
 	public List<Crypto> getPortfolio(String username, String password) {
 		final String sql = "select p.currency from users u  \n" + "join portfolio p on (u.username = p.username)\n"
-				+ "where u.username = '" + username + " and u.hashed_password = '" + password + "';";
-		return jdbcTemplate.query(sql, (resultSet, i) -> {
+				+ "where u.username = ? and u.hashed_password = ? ;";
+		return jdbcTemplate.query(sql, {username, password}, (resultSet, i) -> {
 			String crypto = resultSet.getString("currency");
 
 			return new Crypto(crypto);

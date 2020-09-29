@@ -24,10 +24,6 @@ public class UserService {
     public User addUser(User user){
         return userDao.insertUser(user);
     }
-    
-    public User updateUser(User user) {
-    	return userDao.updateUser(user);
-    }
 
     public Optional<User> getUser(String username, String password) {
     	return userDao.getUser(username, password);
