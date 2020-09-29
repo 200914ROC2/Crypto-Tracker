@@ -33,7 +33,7 @@ public class UserDataAccessService implements UserDao {
 	public User updateUser(User user) {
 		String sql = "update users set email = 'orange@gmail.com',\n" + 
 				"hashed_password = 'newPass'\n" + 
-				"where username = 'becca' and hashed_password = 'password';";		
+				"where username = ? and hashed_password = ?;";		
 		return null; 
 //				jdbcTemplate.query(sql, (resultSet,i) -> {
 //			int id = 
@@ -42,8 +42,8 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public User getUser(String username, String password) {
-		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n" + 
-				"where u.username = ? and u.hashed_password = ?";
+		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u " + 
+				"where u.username = ? and u.hashed_password = ? ;";
 		return jdbcTemplate.queryForObject(sql, new Object[]{username, password},
 				BeanPropertyRowMapper.newInstance(User.class));
 	}
