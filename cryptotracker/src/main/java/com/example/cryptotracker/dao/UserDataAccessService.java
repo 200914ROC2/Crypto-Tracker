@@ -25,9 +25,8 @@ public class UserDataAccessService implements UserDao {
 	public User insertUser(User user) {
 		String sqlUserInfo = "insert into users (username,email,hashed_password) values ('"
 	+ user.getUsername() + "', '" + user.getEmail() + "', '" + user.getPassword() + "'); ";
-			return user;
-		// TODO Auto-generated method stub
-
+		return jdbcTemplate.queryForObject(sqlUserInfo, new Object[]{user.getUsername(), user.getPassword()},
+				BeanPropertyRowMapper.newInstance(User.class));
 	}
 
 	@Override
@@ -64,9 +63,16 @@ public class UserDataAccessService implements UserDao {
 	}
 	
 	@Override
-	public List<Crypto> getPortfolio() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Crypto> getPortfolio(String username, String password) {
+		final String sql = "select p.currency from users u  \n" + 
+				"join portfolio p on (u.username = p.username)\n" + 
+				"where u.username = '" + username + " and u.hashed_password = '" + password + "';";
+		return jdbcTemplate.query(sql, (resultSet,i) -> {
+			String crypto = resultSet.getString("currency");
+					
+					return new Crypto(crypto);
+					//test only
+		});
 	}
 
 	@Override

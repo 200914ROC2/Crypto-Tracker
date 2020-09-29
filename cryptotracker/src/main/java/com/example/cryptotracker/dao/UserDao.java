@@ -18,7 +18,7 @@ public interface UserDao {
 
     List<User> getAllUsers();
     
-    List<Crypto> getPortfolio();
+    List<Crypto> getPortfolio(String username, String password);
 
 	List<Crypto> addToPortfolio();
 

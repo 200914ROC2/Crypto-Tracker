@@ -12,6 +12,9 @@ select currency from portfolio where username = '?';
 select u.user_id, u.username , u.email , u.hashed_password from users u
 where u.username = '?' and u.hashed_password = '?';
 
+select u.user_id, u.username, u.hashed_password, u.email from users u
+where u.username = 'eric' and u.hashed_password = 'password';
+
 
 update users set email = 'orange@gmail.com',
 hashed_password = 'newPass'

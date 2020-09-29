@@ -7,26 +7,17 @@ import javax.validation.constraints.NotBlank;
 //AKA Portfolio
 public class Crypto {
 
-    int id;
+  
     @NotBlank
     String symbol;
 
-    public Crypto(@JsonProperty("id") int id,
-                  @JsonProperty("symbol") String symbol) {
-        this.id = id;
+    public Crypto(@JsonProperty("symbol") String symbol) {
         this.symbol = symbol;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+ 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getSymbol() {
