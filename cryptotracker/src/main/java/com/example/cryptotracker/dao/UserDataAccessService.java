@@ -1,11 +1,13 @@
 package com.example.cryptotracker.dao;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Repository;
 
 import com.example.cryptotracker.model.Crypto;
@@ -28,7 +30,7 @@ public class UserDataAccessService implements UserDao {
 		try {
 		jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
 		} catch(Exception e)   {
-			//need to do something to indicate that user wasn't inserted because username exists already
+			user = null;
 		}
 		return user;
 		//needs to return NOT THE INPUT. 
@@ -43,9 +45,21 @@ public class UserDataAccessService implements UserDao {
 //				BeanPropertyRowMapper.newInstance(User.class));
 	@Override
 	public User getUser(String username, String password) {
-		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
-				+ "where u.username = ? and u.hashed_password = ?";
+		String sql = "select user_id, username, hashed_password, email from users "
+				+ "where username = '" + username + "' and hashed_password = '" + password + "' ;";
+		
+		List<User> userList = jdbcTemplate.query(sql, (resultSet, i) -> {
+			int id = resultSet.getInt("user_id");
+			String dBusername = resultSet.getString("username");
+			String email = resultSet.getString("email");
+			String dBpassword = resultSet.getString("hashed_password");
 
+			return new User(id, dBusername, dBpassword, email);
+			// test only
+		});
+		return userList.get(0);
+
+		
 //		return jdbcTemplate.queryForObject(
 //				sql,
 //				new Object[] { username, password },
@@ -55,18 +69,21 @@ public class UserDataAccessService implements UserDao {
 //			resultSet.getString("username"),
 //			resultSet.getString("hashed_password"),
 //			resultSet.getString("email")
-//			));		
-		
-		return (User) jdbcTemplate.queryForObject(
-				sql, 
-				new Object[] { username, password },
-				BeanPropertyRowMapper.newInstance(User.class));
+//			));	
+//	//OR
+//		User user = (User) jdbcTemplate.query(
+//				sql, 
+//				new Object[] { username, password },
+//				BeanPropertyRowMapper.newInstance(User.class));
+//		return user;
+//	
+//		
 	}
 
 	@Override
 	public Optional<User> getOptionalUser(String username, String password) {
 		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
-				+ "where u.username = ? and u.hashed_password = ?";
+				+ "where u.username = ? and u.hashed_password = ?;";
 
 		return jdbcTemplate.queryForObject(
 				sql,
@@ -87,7 +104,8 @@ public class UserDataAccessService implements UserDao {
 	
 	@Override
 	public List<User> getAllUsers() {
-		final String sql = "select u.user_id, u.username , u.email , u.hashed_password from users u;";
+		final String sql = "select user_id, username , email , hashed_password from users " +
+	"where username = 'tyrone' and hashed_password = 'password';";
 		return jdbcTemplate.query(sql, (resultSet, i) -> {
 			int id = resultSet.getInt("user_id");
 			String username = resultSet.getString("username");
@@ -101,8 +119,7 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public List<Crypto> getPortfolio(String username, String password) {
-//		final String sql = "select p.currency from users u  \n" + "join portfolio p on (u.username = p.username)\n"
-//				+ "where u.username = ? and u.hashed_password = ? ;";
+		final String sql = "select currency from portfolio where username = ?;";
 //		return jdbcTemplate.query(sql, {username, password}, (resultSet, i) -> {
 //			String crypto = resultSet.getString("currency");
 //

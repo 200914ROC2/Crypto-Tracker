@@ -24,8 +24,8 @@ public class UserController {
 
     ///api/register Post { "username", "password", "email" } returns {"username"}
     @PostMapping("/api/register")
-    public void addUser(@Valid @NotNull @RequestBody User user){
-        userService.addUser(user);
+    public User addUser(@Valid @NotNull @RequestBody User user){
+        return userService.addUser(user);
     }
 
     @GetMapping("/api/get")//for testing
