@@ -34,34 +34,36 @@ public class UserDataAccessService implements UserDao {
 		//needs to return NOT THE INPUT. 
 		
 	}
-	
-//	old
-	//public User getUser(String username, String password) {
-//		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u " + 
-//				"where u.username = ? and u.hashed_password = ? ;";
-//		return jdbcTemplate.queryForObject(sql, new Object[]{username, password},
-//				BeanPropertyRowMapper.newInstance(User.class));
-	@Override
-	public User getUser(String username, String password) {
-		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
-				+ "where u.username = ? and u.hashed_password = ?";
 
+
+//	@Override
+//	public User getUser(User user) {
+//		System.out.println(user);
+//		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
+//				+ "where u.username = ? and u.hashed_password = ?";
 //		return jdbcTemplate.queryForObject(
 //				sql,
-//				new Object[] { username, password },
-//				(resultSet, i) -> 
-//			new User(
-//			resultSet.getInt("user_id"),
-//			resultSet.getString("username"),
-//			resultSet.getString("hashed_password"),
-//			resultSet.getString("email")
-//			));		
-		
-		return (User) jdbcTemplate.queryForObject(
-				sql, 
-				new Object[] { username, password },
-				BeanPropertyRowMapper.newInstance(User.class));
+//				new Object[] { user.getUsername(), user.getPassword()},
+//				BeanPropertyRowMapper.newInstance(User.class));
+//	}
+	@Override
+	public User getUser(User user) {
+		String sql = "select user_id, username, hashed_password, email from users "
+				+ "where username = '" + user.getUsername() + "' and hashed_password = '" + user.getPassword() + "' ;";
+
+		List<User> userList = jdbcTemplate.query(sql, (resultSet, i) -> {
+			int id = resultSet.getInt("user_id");
+			String dBusername = resultSet.getString("username");
+			String email = resultSet.getString("email");
+			String dBpassword = resultSet.getString("hashed_password");
+
+			return new User(id, dBusername, dBpassword, email);
+			// test only
+		});
+		return userList.get(0);
+
 	}
+
 
 	@Override
 	public Optional<User> getOptionalUser(String username, String password) {
