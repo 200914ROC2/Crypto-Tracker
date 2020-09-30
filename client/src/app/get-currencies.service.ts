@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const Url = 'whatever we are calling our back end';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +33,18 @@ export class GetCurrenciesService {
 
   get30DayData(symbol: string) {
     return this.http.get(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=29`)
+  }
+
+  getPortfolio(): Observable<any> {
+    return this.http.get(Url);
+  }
+
+  insertCurrency(data): Observable<any> {
+    return this.http.post(Url, data);
+  }
+
+  deleteCurrency(id): Observable<any> {
+    return this.http.delete(`${Url}/${id}`);
   }
 }
 

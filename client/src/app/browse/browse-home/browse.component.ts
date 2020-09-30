@@ -46,7 +46,7 @@ export class BrowseComponent implements OnInit {
 
   getCurrencies() {
     console.log('inside currencySearch');
-    this.singleCurrency = this.getCurrenciesService.getCurrencies().subscribe((response: any) => {
+    this.getCurrenciesService.getCurrencies().subscribe((response: any) => {
       this.currencies = response.Data;
       console.log(response);
     })
@@ -57,7 +57,7 @@ export class BrowseComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.currencySearch();
+    this.getCurrencies();
   }
 
 }
