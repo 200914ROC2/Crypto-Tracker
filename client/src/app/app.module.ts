@@ -10,6 +10,10 @@ import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { CurrenciesModule } from './currencies/currencies.module';
 import { CurrencyPreviewModule } from './currency-preview/currency-preview.module';
+import { CurrencyDetailsModule } from './currency-details/currency-details.module';
+import { PlotModule } from './plot/plot.module';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { CurrencyPreviewModule } from './currency-preview/currency-preview.modul
     HomeModule,
     CurrenciesModule,
     HttpClientModule,
-    CurrencyPreviewModule
+    CurrencyPreviewModule,
+    CurrencyDetailsModule,
+    PlotModule
   ],
   providers: [],
   bootstrap: [AppComponent]
