@@ -15,57 +15,59 @@ import java.util.Optional;
 @RestController
 public class UserController {
 
-    private final UserService userService;
+	private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
-    ///api/register Post { "username", "password", "email" } returns {"username"}
-    @PostMapping("/api/register")
-    public User addUser(@Valid @NotNull @RequestBody User user){
-        return userService.addUser(user);
-    }
+	/// api/register Post { "username", "password", "email" } returns {"username"}
+	@PostMapping("/api/register")
+	public User addUser(@Valid @NotNull @RequestBody User user) {
+		return userService.addUser(user);
+	}
 
-    @GetMapping("/api/get")//for testing
-    public List<User> getAllUser(){
-        return userService.getAllUsers();
-    }
+	@GetMapping("/api/get") // for testing
+	public List<User> getAllUser() {
+		return userService.getAllUsers();
+	}
 
-    //api/portfolio Get returns [{"symbol"}, ...]
-    @GetMapping("/api/portfolio")
-    public List<Crypto> getUserPortfolio(){
-    	return userService.getUserPortfolio();
-    }
+	// api/portfolio Get returns [{"symbol"}, ...]
+	@GetMapping("/api/portfolio")
+	public List<Crypto> getUserPortfolio() {
+		return userService.getUserPortfolio();
+	}
 
-    //api/portfolio/add Post {"symbol"}
-    @PostMapping("/api/portfolio/add")
-    public List<Crypto> addToPortfolio(){
-    	return userService.addToPortfolio();
-    }
-    
-    //api/portfolio/remove Delete {"symbol"}
-    @DeleteMapping("api/portfolio/remove")
-    public List<Crypto> removeFromPortfolio(){
-    	return userService.removeFromPortfolio();
-    }
-    
-    //api/login Post {"username", "password"} returns {"username"}
-    @PostMapping("/api/login")
-    public User getUser(@Valid @NotNull @RequestBody String username, String password) {
-    	return userService.getUser(username, password);
-    }
-    @PostMapping("/api/loginOptional")
-    public Optional<User> getOptionalUser(String username, String password) {
-    	return userService.getOptionalUser(username, password);
-    }  
-    
-    //still need methds for: 
-    //api/logout Get 
-  
-    
-  
- 
+	// api/portfolio/add Post {"symbol"}
+	@PostMapping("/api/portfolio/add")
+	public List<Crypto> addToPortfolio() {
+		return userService.addToPortfolio();
+	}
+
+	// api/portfolio/remove Delete {"symbol"}
+	@DeleteMapping("api/portfolio/remove")
+	public List<Crypto> removeFromPortfolio() {
+		return userService.removeFromPortfolio();
+	}
+
+
+//    public User getUser(@Valid @NotNull @RequestBody String username, String password) {
+//    	return userService.getUser(username, password);
+
+	// api/login Post {"username", "password"} returns {"username"}
+	@PostMapping("/api/login")
+	public User getUser(@Valid @NotNull @RequestBody User user) {
+		System.out.println(user);
+		return userService.getUser(user);
+	}
+
+	@PostMapping("/api/loginOptional")
+	public Optional<User> getOptionalUser(String username, String password) {
+		return userService.getOptionalUser(username, password);
+	}
+
+	// still need methds for:
+	// api/logout Get
 
 }

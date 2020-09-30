@@ -16,7 +16,6 @@ public class User {
     @NotBlank
     private String password;
 
-    @NotBlank
     private String email;
 
     private List<Crypto> portfolio;
@@ -70,5 +69,16 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", portfolio=" + portfolio +
+                '}';
     }
 }

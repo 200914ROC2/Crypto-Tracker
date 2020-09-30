@@ -17,12 +17,19 @@ export class GetCurrenciesService {
   constructor(private http: HttpClient) {}
 
   getCurrencies() {
-    return this.http.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD')
+    return this.http.get(`https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD`)
   }
 
   getSearchedCurrency(filterText: string) {
-    return this.http.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + filterText + '&tsyms=USD')
+    return this.http.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${filterText}&tsyms=USD`)
   }
 
+  get24HourData(symbol: string) {
+    return this.http.get(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=1439`)
+  }
+
+  get30DayData(symbol: string) {
+    return this.http.get(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=29`)
+  }
 }
 

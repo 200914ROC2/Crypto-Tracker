@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetCurrenciesService } from '../../get-currencies.service'
 
 @Component({
@@ -7,6 +7,7 @@ import { GetCurrenciesService } from '../../get-currencies.service'
   styleUrls: ['./browse.component.css']
 })
 export class BrowseComponent implements OnInit {
+  @Output() selected = new EventEmitter<Object>();
 
   currencies;
   filteredCurrencies;
@@ -51,6 +52,9 @@ export class BrowseComponent implements OnInit {
     })
   }
 
+  viewDetails(details: any) {
+    this.selected.emit(details);
+  }
 
   ngOnInit() {
     // this.currencySearch();

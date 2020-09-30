@@ -18,6 +18,7 @@ public class UserService {
 
     @Autowired
     public UserService(@Qualifier("userDao") UserDao userDao) {
+
         this.userDao = userDao;
     }
 
@@ -25,8 +26,8 @@ public class UserService {
         return userDao.insertUser(user);
     }
 
-    public User getUser(String username, String password) {
-    	return userDao.getUser(username, password);
+    public User getUser(User user) {
+    	return userDao.getUser(user);
     }
     public List<User> getAllUsers(){
         return userDao.getAllUsers();

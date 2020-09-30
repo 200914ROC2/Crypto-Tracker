@@ -1,0 +1,37 @@
+<div class="row mb-3">
+    <div class="col-2">
+        <app-button content="Back to List" type="button" (clicked)="goBack()"></app-button>
+    </div>
+    <div class="col-10"></div>
+</div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="card border-0">
+                            <img [src]="imageUrl" class="card-img">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <h5 class="card-title">{{ symbol }}</h5>
+                        <p class="card-text">{{ name }}</p>
+                        <p class="card-text">Current price: {{ price | currency:'USD'}}</p>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <app-plot-home *ngIf="render24Hour" title="Price History - Last 24 Hours" [xArray]="x24Hour" [yArray]="y24Hour"></app-plot-home>
+                <app-plot-home *ngIf="render30Day" title="Price History - Last 30Days" [xArray]="x30Day" [yArray]="y30Day"></app-plot-home>
+            </div>
+        </div>
+    </div>
+</div>

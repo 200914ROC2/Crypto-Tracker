@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeHomeComponent } from './home-home/home-home.component';
-import { BrowseModule } from '../browse/browse.module'
+import { BrowseModule } from '../browse/browse.module';
+import { CurrencyDetailsModule } from '../currency-details/currency-details.module';
 
 
 
@@ -12,7 +13,8 @@ import { BrowseModule } from '../browse/browse.module'
   imports: [
     CommonModule,
     HomeRoutingModule,
-    BrowseModule
+    BrowseModule,
+    CurrencyDetailsModule
   ]
 })
 export class HomeModule { }
