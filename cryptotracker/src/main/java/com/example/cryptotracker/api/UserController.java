@@ -53,7 +53,7 @@ public class UserController {
     
     //api/login Post {"username", "password"} returns {"username"}
     @PostMapping("/api/login")
-    public User getUser(String username, String password) {
+    public User getUser(@Valid @NotNull @RequestBody String username, String password) {
     	return userService.getUser(username, password);
     }
     @PostMapping("/api/loginOptional")
