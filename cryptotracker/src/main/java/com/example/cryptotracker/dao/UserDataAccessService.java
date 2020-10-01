@@ -80,9 +80,10 @@ public class UserDataAccessService implements UserDao {
 	}
 
 	@Override
-	public List<String> getAltPortfolio() {
-		final String sql = "select username, currency from portfolio";
-		return jdbcTemplate.query(sql, (resultSet, i) -> {
+	public List<String> getUserStringPortfolio(User user) {
+		final String sql = "select username, currency from portfolio where username = '" + 
+				user.getUsername() + "';";
+		return jdbcTemplate.query(sql,(resultSet, i) -> {
 			String username = resultSet.getString("username");
 			String crypto = resultSet.getString("currency");
 

@@ -21,7 +21,7 @@ public interface UserDao {
 
 	List<Crypto> removeFromPortfolio(User user, Crypto cryptocurrency);
 
-	List<String> getAltPortfolio();    
+	List<String> getUserStringPortfolio(User user);    
     
     
 }

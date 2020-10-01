@@ -32,9 +32,9 @@ public class UserController {
 	public List<User> getAllUser() {
 		return userService.getAllUsers();
 	}
-	@GetMapping("/api/getAllPortfolios")
-	public List<String> getAllPortfolios(){
-		return userService.getAllPortfolios();
+	@PostMapping("/api/getUserStringPortfolio")
+	public List<String> getUserStringPortfolio(@RequestBody User user){
+		return userService.getUserStringPortfolio(user);
 	}
 	
 	// api/portfolio Get returns [{"symbol"}, ...]
