@@ -32,15 +32,15 @@ public class UserService {
 		return userDao.getAllUsers();
 	}
 
-	public List<Crypto> getUserPortfolio(User user) {
+	public List<String> getUserPortfolio(User user) {
 		return userDao.getPortfolio(user);
 	}
 
-	public List<Crypto> addToPortfolio(User user, Crypto cryptocurrency) {
+	public List<String> addToPortfolio(User user, String cryptocurrency) {
 		return userDao.addToPortfolio(user, cryptocurrency);
 	}
 
-	public List<Crypto> removeFromPortfolio(User user, Crypto cryptocurrency) {
+	public List<String> removeFromPortfolio(User user, String cryptocurrency) {
 		return userDao.removeFromPortfolio(user, cryptocurrency);
 	}
 

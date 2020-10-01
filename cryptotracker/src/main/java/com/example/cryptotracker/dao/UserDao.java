@@ -15,11 +15,11 @@ public interface UserDao {
 
     List<User> getAllUsers();
     
-    List<Crypto> getPortfolio(User user);
+    List<String> getPortfolio(User user);
 
-	List<Crypto> addToPortfolio(User user, Crypto cryptocurrency);
+	List<String> addToPortfolio(User user, String cryptocurrency);
 
-	List<Crypto> removeFromPortfolio(User user, Crypto cryptocurrency);
+	List<String> removeFromPortfolio(User user, String cryptocurrency);
 
 	List<String> getUserStringPortfolio(User user);    
     

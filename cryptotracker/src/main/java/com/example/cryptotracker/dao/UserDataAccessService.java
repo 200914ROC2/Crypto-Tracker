@@ -40,6 +40,7 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public User getUser(User user) {
+		
 		String sql = "select user_id, username, hashed_password, email from users "
 				+ "where username = '" + user.getUsername() + "' and hashed_password = '" + user.getPassword() + "' ;";
 
@@ -50,8 +51,9 @@ public class UserDataAccessService implements UserDao {
 			String password = resultSet.getString("hashed_password");
 
 			return new User(id, username, password, email);
-			// test only
+
 		});
+		userList.get(0).setPortfolio(getPortfolio(user));
 		return userList.get(0);
 	}
 
@@ -70,12 +72,12 @@ public class UserDataAccessService implements UserDao {
 	}
 
 	@Override
-	public List<Crypto> getPortfolio(User user) {
+	public List<String> getPortfolio(User user) {
 		final String sql = "select currency from portfolio where username = '"+ user.getUsername() + "';";
 		return jdbcTemplate.query(sql, (resultSet, i) -> {
 			String crypto = resultSet.getString("currency");
 
-			return new Crypto(crypto);
+			return new String(crypto);
 		});
 	}
 
@@ -85,20 +87,30 @@ public class UserDataAccessService implements UserDao {
 				user.getUsername() + "';";
 		return jdbcTemplate.query(sql,(resultSet, i) -> {
 			String username = resultSet.getString("username");
-			String crypto = resultSet.getString("currency");
+			String crypto = resultSet.getString("currency");	
 
 			return new String(username + "." + crypto);
 		});
 	}
 	
 	@Override
-	public List<Crypto> addToPortfolio(User user, Crypto cryptocurrency) {
-		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";
-		return null;
+	public List<String> addToPortfolio(User user, String cryptocurrency) {
+		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');";
+		
+		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);
+		
+		return getUserStringPortfolio(user);
+		
+		
 	}
+	
+//	String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
+//	try {
+//	jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
+
 
 	@Override
-	public List<Crypto> removeFromPortfolio(User user, Crypto cryptocurrency) {
+	public List<String> removeFromPortfolio(User user, String cryptocurrency) {
 		// TODO Auto-generated method stub
 		return null;
 	}
