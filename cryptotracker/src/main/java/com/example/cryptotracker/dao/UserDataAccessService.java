@@ -37,59 +37,7 @@ public class UserDataAccessService implements UserDao {
 		
 	}
 	
-//	old
-	//public User getUser(String username, String password) {
-//		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u " + 
-//				"where u.username = ? and u.hashed_password = ? ;";
-//		return jdbcTemplate.queryForObject(sql, new Object[]{username, password},
-//				BeanPropertyRowMapper.newInstance(User.class));
-//	@Override
-//	public User getUser(String username, String password) {
-//		String sql = "select user_id, username, hashed_password, email from users "
-//				+ "where username = '" + username + "' and hashed_password = '" + password + "' ;";
-//		
-//		List<User> userList = jdbcTemplate.query(sql, (resultSet, i) -> {
-//			int id = resultSet.getInt("user_id");
-//			String dBusername = resultSet.getString("username");
-//			String email = resultSet.getString("email");
-//			String dBpassword = resultSet.getString("hashed_password");
-//
-//			return new User(id, dBusername, dBpassword, email);
-//			// test only
-//		});
-////		return userList.get(0);
 
-		
-//		return jdbcTemplate.queryForObject(
-//				sql,
-//				new Object[] { username, password },
-//				(resultSet, i) -> 
-//			new User(
-//			resultSet.getInt("user_id"),
-//			resultSet.getString("username"),
-//			resultSet.getString("hashed_password"),
-//			resultSet.getString("email")
-//			));	
-//	//OR
-//		User user = (User) jdbcTemplate.query(
-//				sql, 
-//				new Object[] { username, password },
-//				BeanPropertyRowMapper.newInstance(User.class));
-//		return user;
-//	
-//		
-
-
-//	@Override
-//	public User getUser(User user) {
-//		System.out.println(user);
-//		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
-//				+ "where u.username = ? and u.hashed_password = ?";
-//		return jdbcTemplate.queryForObject(
-//				sql,
-//				new Object[] { user.getUsername(), user.getPassword()},
-//				BeanPropertyRowMapper.newInstance(User.class));
-//	}
 	@Override
 	public User getUser(User user) {
 		String sql = "select user_id, username, hashed_password, email from users "
@@ -97,40 +45,16 @@ public class UserDataAccessService implements UserDao {
 
 		List<User> userList = jdbcTemplate.query(sql, (resultSet, i) -> {
 			int id = resultSet.getInt("user_id");
-			String dBusername = resultSet.getString("username");
+			String username = resultSet.getString("username");
 			String email = resultSet.getString("email");
-			String dBpassword = resultSet.getString("hashed_password");
+			String password = resultSet.getString("hashed_password");
 
-			return new User(id, dBusername, dBpassword, email);
+			return new User(id, username, password, email);
 			// test only
 		});
 		return userList.get(0);
-
 	}
 
-
-	@Override
-	public Optional<User> getOptionalUser(String username, String password) {
-		String sql = "select u.user_id, u.username, u.hashed_password, u.email from users u\n"
-				+ "where u.username = ? and u.hashed_password = ?;";
-
-		return jdbcTemplate.queryForObject(
-				sql,
-				new Object[] { username, password },
-				(resultSet, i) -> 
-			Optional.of(new User(
-			resultSet.getInt("user_id"),
-			resultSet.getString("username"),
-			resultSet.getString("hashed_password"),
-			resultSet.getString("email")
-			)));		
-		
-//		return (User) jdbcTemplate.queryForObject(
-//				sql, 
-//				new Object[] { username, password },
-//				BeanPropertyRowMapper.newInstance(User.class));
-	}
-	
 	@Override
 	public List<User> getAllUsers() {
 		final String sql = "select user_id, username , email , hashed_password from users " +
@@ -147,25 +71,23 @@ public class UserDataAccessService implements UserDao {
 	}
 
 	@Override
-	public List<Crypto> getPortfolio(String username, String password) {
-		final String sql = "select currency from portfolio where username = ?;";
-//		return jdbcTemplate.query(sql, {username, password}, (resultSet, i) -> {
-//			String crypto = resultSet.getString("currency");
-//
-//			return new Crypto(crypto);
-//			// test only
-//		});
-return null;
+	public List<Crypto> getPortfolio(User user) {
+		final String sql = "select currency from portfolio where username = '"+ user.getUsername() + "';";
+		return jdbcTemplate.query(sql, (resultSet, i) -> {
+			String crypto = resultSet.getString("currency");
+
+			return new Crypto(crypto);
+		});
 	}
 
 	@Override
-	public List<Crypto> addToPortfolio() {
+	public List<Crypto> addToPortfolio(User user, Crypto cryptocurrency) {
 		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";
 		return null;
 	}
 
 	@Override
-	public List<Crypto> removeFromPortfolio() {
+	public List<Crypto> removeFromPortfolio(User user, Crypto cryptocurrency) {
 		// TODO Auto-generated method stub
 		return null;
 	}

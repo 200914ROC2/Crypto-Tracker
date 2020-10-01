@@ -34,37 +34,28 @@ public class UserController {
 	}
 
 	// api/portfolio Get returns [{"symbol"}, ...]
-	@GetMapping("/api/portfolio")
-	public List<Crypto> getUserPortfolio() {
-		return userService.getUserPortfolio();
+	@PostMapping("/api/portfolio")
+	public List<Crypto> getUserPortfolio(@Valid @NotNull @RequestBody User user) {
+		return userService.getUserPortfolio(user);
 	}
 
 	// api/portfolio/add Post {"symbol"}
 	@PostMapping("/api/portfolio/add")
-	public List<Crypto> addToPortfolio() {
-		return userService.addToPortfolio();
+	public List<Crypto> addToPortfolio(@Valid @NotNull @RequestBody User user, @Valid @NotNull @RequestBody Crypto cryptocurrency) {
+		return userService.addToPortfolio(user, cryptocurrency);
 	}
 
 	// api/portfolio/remove Delete {"symbol"}
 	@DeleteMapping("api/portfolio/remove")
-	public List<Crypto> removeFromPortfolio() {
-		return userService.removeFromPortfolio();
+	public List<Crypto> removeFromPortfolio(@Valid @NotNull @RequestBody User user, @Valid @NotNull @RequestBody Crypto cryptocurrency) {
+		return userService.removeFromPortfolio(user, cryptocurrency);
 	}
-
-
-//    public User getUser(@Valid @NotNull @RequestBody String username, String password) {
-//    	return userService.getUser(username, password);
 
 	// api/login Post {"username", "password"} returns {"username"}
 	@PostMapping("/api/login")
 	public User getUser(@Valid @NotNull @RequestBody User user) {
 		System.out.println(user);
 		return userService.getUser(user);
-	}
-
-	@PostMapping("/api/loginOptional")
-	public Optional<User> getOptionalUser(String username, String password) {
-		return userService.getOptionalUser(username, password);
 	}
 
 	// still need methds for:

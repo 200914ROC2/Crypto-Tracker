@@ -28,7 +28,7 @@ public class User {
         this.username = name;
         this.password = password;
         this.email = email;
-        portfolio = new ArrayList<>();
+        this.portfolio = new ArrayList<>();
     }
 
     public void setId(int id) {
