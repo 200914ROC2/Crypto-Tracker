@@ -1,21 +1,38 @@
-<div class="search-group">
-    <app-input [type]="'text'" [label]="'Filter Currencies'" (typed)="filterCurrencies($event)"></app-input>
-    <app-button (click)="getCurrencies()" [content]="'Search'"></app-button>
-    <app-button (click)="resetCurrencySearch()" [content]="'Reset'"></app-button>
+<div class="row mb-4">
+    <div class="col-12">
+        <form>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-6">
+                    <app-input [type]="'text'" [label]="'Filter Currencies'" (typed)="setFilterText($event)"></app-input>
+                </div>
+                <div class="col-1 button-container pb-3">
+                    <app-button type="submit" (clicked)="setFilteredCurrencies()" content="Search"></app-button>
+                </div>
+                <div class="col-1 button-container pb-3">
+                    <app-button type="button" (clicked)="resetCurrencySearch()" content="Reset"></app-button>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </form>
+    </div>
 </div>
 
-<div *ngIf="'logoUrl'" style="display: flex; justify-content: space-around;">
+<!-- <div *ngIf="'logoUrl'" style="display: flex; justify-content: space-around;">
     <div>{{ filterText }}</div>
     <img [src]="logoUrl" />
     <div>{{ price }}</div>
-</div><br>
+</div><br> -->
 
-<app-currency-preview-home
-    *ngFor="let currency of currencies"
-    [name]="currency.CoinInfo.FullName" 
-    [symbol]="currency.CoinInfo.Name" 
-    [imageUrl]="'https://cryptocompare.com' + currency.CoinInfo.ImageUrl"
-    [price]="currency.RAW.USD.PRICE"
-    (clicked)="viewDetails($event)"
-    >
-</app-currency-preview-home>
+<div class="row mb-3" *ngFor="let currency of filteredCurrencies">
+    <div class="col-12">
+        <app-currency-preview-home
+        [name]="currency.CoinInfo.FullName" 
+        [symbol]="currency.CoinInfo.Name" 
+        [imageUrl]="'https://cryptocompare.com' + currency.CoinInfo.ImageUrl"
+        [price]="currency.RAW.USD.PRICE"
+        (clicked)="viewDetails($event)"
+        >
+    </app-currency-preview-home>
+    </div>
+</div>

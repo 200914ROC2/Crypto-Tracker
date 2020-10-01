@@ -20,7 +20,7 @@ export class PlotHomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.data = [{ x: this.xArray, y: this.yArray, type: 'scatter', mode: 'lines+points', marker: {color: 'red'} }];
+    this.data = [{ x: this.xArray, y: this.yArray, type: 'scatter', mode: 'lines+points', marker: {color: 'teal'} }];
     this.layout = {title: this.title, yaxis: {tickformat: '$'}};
   }
 

@@ -1,4 +1,4 @@
-<div class="card" (click)="onClick($event)">
+<div class="card shadow-sm rounded-0 border-0" (click)="onClick($event)">
     <div class="row">
         <div class="col-12">
             <div class="card-body">
@@ -8,17 +8,15 @@
                             <img [src]="imageUrl" class="card-img">
                         </div>
                     </div>
-                    <div class="col-2">
-                        
+                    <div class="col-2"></div>
+                    <div class="col-3 preview-text-container">
+                        <h4 class="m-0">{{ symbol }}</h4>
                     </div>
-                    <div class="col-3">
-                        <h4>{{ symbol }}</h4>
+                    <div class="col-3 preview-text-container">
+                        <p class="m-0">{{ name }}</p>
                     </div>
-                    <div class="col-3">
-                        <p>{{ name }}</p>
-                    </div>
-                    <div class="col-3">
-                        <p>{{ price | currency:'USD'}}</p>
+                    <div class="col-3 preview-text-container">
+                        <p class="m-0">Current price: {{ price | currency:'USD'}}</p>
                     </div>
                 </div>
             </div>
