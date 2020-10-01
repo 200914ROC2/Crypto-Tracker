@@ -44,4 +44,8 @@ public class UserService {
 		return userDao.removeFromPortfolio(user, cryptocurrency);
 	}
 
+	public List<String> getAllPortfolios() {
+		return userDao.getAltPortfolio();
+	}
+
 }

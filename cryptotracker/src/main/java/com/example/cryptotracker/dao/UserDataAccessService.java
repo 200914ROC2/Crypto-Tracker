@@ -57,8 +57,7 @@ public class UserDataAccessService implements UserDao {
 
 	@Override
 	public List<User> getAllUsers() {
-		final String sql = "select user_id, username , email , hashed_password from users " +
-	"where username = 'tyrone' and hashed_password = 'password';";
+		final String sql = "select user_id, username , email , hashed_password from users ";
 		return jdbcTemplate.query(sql, (resultSet, i) -> {
 			int id = resultSet.getInt("user_id");
 			String username = resultSet.getString("username");
@@ -80,6 +79,17 @@ public class UserDataAccessService implements UserDao {
 		});
 	}
 
+	@Override
+	public List<String> getAltPortfolio() {
+		final String sql = "select username, currency from portfolio";
+		return jdbcTemplate.query(sql, (resultSet, i) -> {
+			String username = resultSet.getString("username");
+			String crypto = resultSet.getString("currency");
+
+			return new String(username + "." + crypto);
+		});
+	}
+	
 	@Override
 	public List<Crypto> addToPortfolio(User user, Crypto cryptocurrency) {
 		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');\n";

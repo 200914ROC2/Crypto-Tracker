@@ -32,7 +32,11 @@ public class UserController {
 	public List<User> getAllUser() {
 		return userService.getAllUsers();
 	}
-
+	@GetMapping("/api/getAllPortfolios")
+	public List<String> getAllPortfolios(){
+		return userService.getAllPortfolios();
+	}
+	
 	// api/portfolio Get returns [{"symbol"}, ...]
 	@PostMapping("/api/portfolio")
 	public List<Crypto> getUserPortfolio(@Valid @NotNull @RequestBody User user) {
