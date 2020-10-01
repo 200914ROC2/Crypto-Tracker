@@ -36,8 +36,8 @@ public class UserService {
 		return userDao.getPortfolio(user);
 	}
 
-	public List<String> addToPortfolio(User user, String cryptocurrency) {
-		return userDao.addToPortfolio(user, cryptocurrency);
+	public void addToPortfolio(User user, String cryptocurrency) {
+		userDao.addToPortfolio(user, cryptocurrency);
 	}
 
 	public List<String> removeFromPortfolio(User user, String cryptocurrency) {
