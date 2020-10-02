@@ -33,22 +33,20 @@ public class UserController {
 	public List<User> getAllUser() {
 		return userService.getAllUsers();
 	}
-	@PostMapping("/getUserStringPortfolio")
-	public List<String> getUserStringPortfolio(@RequestBody User user){
-		return userService.getUserStringPortfolio(user);
-	}
 	
 	//after session make this a getmapping instead, and get user info from session.
 	// api/portfolio Get returns [{"symbol"}, ...]
-	@PostMapping("/portfolio")
-	public List<String> getUserPortfolio(@RequestBody User user) {
+	@GetMapping("/portfolio")
+	public List<String> getUserPortfolio(HttpSession session) {
+		User user = (User)session.getAttribute("user");
 		return userService.getUserPortfolio(user);
 	}
 
 	// api/portfolio/add Post {"symbol"}
 	@PostMapping("/portfolio/add")
-	public void addToPortfolio(@RequestParam("symbol") String cryptocurrency) {
-
+	public void addToPortfolio(HttpSession session, @RequestParam("symbol") String cryptocurrency) {
+		User user = (User)session.getAttribute("user");
+		userService.addToPortfolio(user, cryptocurrency);
 	}
 
 	// api/portfolio/remove Delete {"symbol"}
