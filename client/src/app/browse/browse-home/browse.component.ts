@@ -19,11 +19,8 @@ export class BrowseComponent implements OnInit {
   constructor(private getCurrenciesService: GetCurrenciesService) {
   }
 
-  filterCurrencies(filterText: string) {
-    console.log('inside filterCurrencies');
-    this.filteredCurrencies = this.currencies;
+  setFilterText(filterText: string) {
     this.filterText = filterText;
-    console.log(this.filterText);
   }
 
   getSearchedCurrency() {
@@ -37,18 +34,28 @@ export class BrowseComponent implements OnInit {
     })
   }
 
+  setFilteredCurrencies() {
+    const newFilteredCurrencies = [];
+    for (let currency of this.currencies) {
+      if (currency.CoinInfo.Name.toLowerCase().includes(this.filterText.toLowerCase())) {
+        newFilteredCurrencies.push(currency);
+      }
+    }
+    this.filteredCurrencies = newFilteredCurrencies;
+  }
+
   resetCurrencySearch() {
-    console.log('inside resetCurrencySearch()')
-    console.log('filterText before: ' + this.filterText);
-    this.filterText = null;
-    console.log('filterText after: ' + this.filterText);
+    // console.log('inside resetCurrencySearch()')
+    // console.log('filterText before: ' + this.filterText);
+    // this.filterText = null;
+    // console.log('filterText after: ' + this.filterText);
+    this.filteredCurrencies = this.currencies;
   }
 
   getCurrencies() {
-    console.log('inside currencySearch');
     this.singleCurrency = this.getCurrenciesService.getCurrencies().subscribe((response: any) => {
       this.currencies = response.Data;
-      console.log(response);
+      this.filteredCurrencies = this.currencies;
     })
   }
 
@@ -57,7 +64,7 @@ export class BrowseComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.currencySearch();
+    this.getCurrencies();
   }
 
 }

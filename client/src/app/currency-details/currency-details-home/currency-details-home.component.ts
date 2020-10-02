@@ -27,6 +27,18 @@ export class CurrencyDetailsHomeComponent implements OnInit {
     this.back.emit(true);
   }
 
+  setRender24Hour(event: any) {
+    event.preventDefault();
+    this.render30Day = false;
+    this.render24Hour = true;
+  }
+
+  setRender30Day(event: any) {
+    event.preventDefault();
+    this.render24Hour = false;
+    this.render30Day = true;
+  }
+
   ngOnInit(): void {
     this.getCurrenciesService.get24HourData(this.symbol).subscribe((response: any) => {
       for (let data of response.Data.Data) {
@@ -45,7 +57,7 @@ export class CurrencyDetailsHomeComponent implements OnInit {
         this.y30Day.push(data.close);
       }
       this.price = this.y30Day[this.y30Day.length - 1].toString();
-      this.render30Day = true;
+      // this.render30Day = true;
     });
   }
 

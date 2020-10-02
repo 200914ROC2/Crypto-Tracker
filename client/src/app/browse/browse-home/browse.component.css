@@ -1,3 +1,8 @@
 .search-group {
     display: flex;
 }
+
+.button-container {
+    display: flex;
+    align-items: flex-end;
+}
