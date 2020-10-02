@@ -72,7 +72,7 @@ public class UserController {
 
 	@GetMapping("/logout")
 	public void logout(HttpSession session){
-		System.out.println(session.getAttribute("user"));
+		session.invalidate();
 	}
 
 }
