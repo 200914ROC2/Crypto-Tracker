@@ -16,10 +16,6 @@ button:hover {
     box-shadow: 0 4px rgb(1,56,1);
 }
 
-button:focus {
-    border: 2px solid black;
-}
-
 button:active {
     top: -1px;
     box-shadow: 0 1px rgb(1,56,1);
