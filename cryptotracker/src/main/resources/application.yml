@@ -4,11 +4,3 @@ app:
     username: postgres
     password: password
     pool-size: 30
-
-
-  session:
-    store-type: jdbc
-    jdbc:
-      initialize-schema: always
-    timeout:
-      seconds: 900
