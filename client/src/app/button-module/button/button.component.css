@@ -1,3 +1,26 @@
 button {
-    height: auto;
+    background-color: rgb(7, 163, 28);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+    box-shadow: 0 6px rgb(1, 56, 1);
+    top: -6px;
+}
+
+button:hover {
+    top: -4px;
+    box-shadow: 0 4px rgb(1,56,1);
+}
+
+button:focus {
+    border: 2px solid black;
+}
+
+button:active {
+    top: -1px;
+    box-shadow: 0 1px rgb(1,56,1);
 }
