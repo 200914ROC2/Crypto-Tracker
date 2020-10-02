@@ -1,11 +1,9 @@
 package com.example.cryptotracker.dao;
 
-import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+
 //Temporary
 public interface UserDao {
 

@@ -1,6 +1,6 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://172.17.0.2:5432,localhost:5432/cryptodb
+    jdbc-url: jdbc:postgresql://172.17.0.2:5432,localhost:5432/cryptodb?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
     username: postgres
-    password: p
+    password: password
     pool-size: 30
