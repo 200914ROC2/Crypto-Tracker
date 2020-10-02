@@ -1,16 +1,11 @@
 package com.example.cryptotracker.dao;
 
-import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Repository;
 
-import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 
 //check what repository should actually be enclosed)

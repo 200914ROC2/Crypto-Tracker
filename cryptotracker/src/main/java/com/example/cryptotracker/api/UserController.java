@@ -1,16 +1,15 @@
 package com.example.cryptotracker.api;
 
-import com.example.cryptotracker.model.Crypto;
 import com.example.cryptotracker.model.User;
 import com.example.cryptotracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -46,8 +45,14 @@ public class UserController {
 
 	// api/portfolio/add Post {"symbol"}
 	@PostMapping("/api/portfolio/add")
-	public void addToPortfolio(@Valid @NotNull @RequestBody User user, @Valid @NotNull @RequestBody String cryptocurrency) {
-		userService.addToPortfolio(user, cryptocurrency);
+	public void addToPortfolio(@RequestParam("symbol") String cryptocurrency, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			userService.addToPortfolio((User)session.getAttribute("user"),cryptocurrency);
+		}
+		else {
+			System.out.println("No session found");
+		}
 	}
 
 	// api/portfolio/remove Delete {"symbol"}
@@ -58,9 +63,15 @@ public class UserController {
 
 	// api/login Post {"username", "password"} returns {"username"}
 	@PostMapping("/api/login")
-	public User getUser(@Valid @NotNull @RequestBody User user) {
-		System.out.println(user);
-		return userService.getUser(user);
+	public User getUser(@Valid @NotNull @RequestBody User user, HttpServletRequest request) {
+		User loginUser = userService.getUser(user);
+		if(loginUser != null){
+			if(request.getSession(false) != null){
+				request.getSession().setAttribute("user",user);
+			}
+		}
+		return loginUser;
+
 	}
 
 	// still need methds for:
