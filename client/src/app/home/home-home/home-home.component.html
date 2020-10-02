@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
     <app-browse *ngIf="!showDetails" (selected)="renderDetails($event)"></app-browse>
 
     <app-currency-details-home *ngIf="showDetails" [name]="chosenName" [symbol]="chosenSymbol" [imageUrl]="chosenImageUrl" (back)="renderList()"></app-currency-details-home>
