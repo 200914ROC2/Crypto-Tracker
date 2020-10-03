@@ -1,5 +1,6 @@
 package com.example.cryptotracker;
 
+import com.example.cryptotracker.security.PasswordHasher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

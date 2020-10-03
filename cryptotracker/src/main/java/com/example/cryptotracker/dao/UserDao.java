@@ -11,6 +11,8 @@ public interface UserDao {
         
     User getUser(User user);
 
+    String getPassword(String username);
+
     List<User> getAllUsers();
     
     List<String> getPortfolio(User user);

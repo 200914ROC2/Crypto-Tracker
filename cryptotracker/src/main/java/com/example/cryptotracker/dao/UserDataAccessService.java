@@ -28,8 +28,7 @@ public class UserDataAccessService implements UserDao {
 			user = null;
 		}
 		return user;
-		//needs to return NOT THE INPUT. 
-		
+		//needs to return NOT THE INPUT.
 	}
 	
 
@@ -50,6 +49,15 @@ public class UserDataAccessService implements UserDao {
 		});
 		userList.get(0).setPortfolio(getPortfolio(user));
 		return userList.get(0);
+	}
+
+	@Override
+	public String getPassword(String username) {
+		final String sql = "select hashed_password from users  where username = '"+username+"'";
+		List<String> password = jdbcTemplate.query(
+				sql, (resultSet, i) ->
+				resultSet.getString("hashed_password"));
+		return password.get(0);
 	}
 
 	@Override
@@ -79,8 +87,7 @@ public class UserDataAccessService implements UserDao {
 	@Override
 	public void addToPortfolio(User user, String cryptocurrency) {
 		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');";
-		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);		
-		
+		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);
 	}
 	
 //	String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";

@@ -2,6 +2,7 @@ package com.example.cryptotracker.service;
 
 import com.example.cryptotracker.dao.UserDao;
 import com.example.cryptotracker.model.User;
+import com.example.cryptotracker.security.PasswordHasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,13 @@ public class UserService {
 	}
 
 	public User addUser(User user) {
+		user.setPassword(PasswordHasher.generateHash(user.getPassword()));
 		return userDao.insertUser(user);
 	}
 
 	public User getUser(User user) {
+		String hashedPass = userDao.getPassword(user.getUsername());
+		user.setPassword(PasswordHasher.getHashed(user.getPassword(),hashedPass));
 		return userDao.getUser(user);
 	}
 
