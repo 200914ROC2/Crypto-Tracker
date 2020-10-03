@@ -22,13 +22,13 @@ public class UserDataAccessService implements UserDao {
 	@Override
 	public User insertUser(User user) {// Working now Might need a try catch?
 		String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
-		try {
+		
 		jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
-		} catch(Exception e)   {
-			user = null;
-		}
-		return user;
-		//needs to return NOT THE INPUT.
+
+		User newUser = getUser(user);
+	
+		return newUser;
+		
 	}
 	
 

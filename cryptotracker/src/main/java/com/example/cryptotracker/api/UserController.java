@@ -29,12 +29,26 @@ public class UserController {
 		return userService.addUser(user);
 	}
 
-	@GetMapping("/get") // for testing
-	public List<User> getAllUser() {
+	// api/login Post {"username", "password"} returns {"username"}
+	@PostMapping("/login")
+	public User getUser(@Valid @NotNull @RequestBody User user, HttpSession session) {
+		User loginUser = userService.getUser(user);
+		if(loginUser != null){
+			session.setAttribute("user",loginUser);
+		}
+		return loginUser;
+	}
+	
+	@GetMapping("/logout")
+	public void logout(HttpSession session){
+		session.removeAttribute("user");
+	}
+
+	@GetMapping("/get") // for testing, NOT part of app
+	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
 	
-	//after session make this a getmapping instead, and get user info from session.
 	// api/portfolio Get returns [{"symbol"}, ...]
 	@GetMapping("/portfolio")
 	public List<String> getUserPortfolio(HttpSession session) {
@@ -56,19 +70,5 @@ public class UserController {
 		userService.removeFromPortfolio(user, symbol);
 	}
 
-	// api/login Post {"username", "password"} returns {"username"}
-	@PostMapping("/login")
-	public User getUser(@Valid @NotNull @RequestBody User user, HttpSession session) {
-		User loginUser = userService.getUser(user);
-		if(loginUser != null){
-			session.setAttribute("user",loginUser);
-		}
-		return loginUser;
-	}
-
-	@GetMapping("/logout")
-	public void logout(HttpSession session){
-		session.removeAttribute("user");
-	}
 
 }
