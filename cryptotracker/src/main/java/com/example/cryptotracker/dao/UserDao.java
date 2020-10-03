@@ -17,9 +17,6 @@ public interface UserDao {
 
 	void addToPortfolio(User user, String cryptocurrency);
 
-	List<String> removeFromPortfolio(User user, String cryptocurrency);
-
-	List<String> getUserStringPortfolio(User user);    
-    
+	List<String> removeFromPortfolio(User user, String cryptocurrency);    
     
 }
