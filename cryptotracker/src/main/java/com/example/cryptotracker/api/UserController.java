@@ -44,18 +44,18 @@ public class UserController {
 
 	// api/portfolio/add Post {"symbol"}
 	@PostMapping("/portfolio/add")
-	public void addToPortfolio(HttpSession session, @RequestParam("symbol") String cryptocurrency) {
+	public void addToPortfolio(HttpSession session, @RequestParam("symbol") String symbol) {
 		User user = (User)session.getAttribute("user");
-		userService.addToPortfolio(user, cryptocurrency);
+		userService.addToPortfolio(user, symbol);
 	}
 
 	// api/portfolio/remove Delete {"symbol"}
 	@DeleteMapping("/portfolio/remove")
-	public List<String> removeFromPortfolio(@RequestParam("symbol") String cryptocurrency,HttpSession session) {
+	public List<String> removeFromPortfolio(@RequestParam("symbol") String symbol,HttpSession session) {
 		List<String> result = null;
 		User user = (User)session.getAttribute("user");
 		if(user != null){
-			result = userService.removeFromPortfolio(user, cryptocurrency);
+			result = userService.removeFromPortfolio(user, symbol);
 		}
 		return result;
 	}

@@ -1,6 +1,6 @@
 select * from users;
 select * from portfolio ;
-
+select * from currency;
 
 insert into users (username,email,hashed_password) values ('?','?','?');
 
