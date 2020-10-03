@@ -85,20 +85,17 @@ public class UserDataAccessService implements UserDao {
 	}
 	
 	@Override
-	public void addToPortfolio(User user, String cryptocurrency) {
+	public void addToPortfolio(User user, String symbol) {
 		String sql = "insert into portfolio (record_id, username, currency) values (default, ?,?);";
-		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);
+		jdbcTemplate.update(sql,user.getUsername(),symbol);
 	}
-	
-//	String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
-//	try {
-//	jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
 
 
 	@Override
-	public List<String> removeFromPortfolio(User user, String cryptocurrency) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeFromPortfolio(User user, String cryptocurrencySymbol) {
+		String sql = "delete from portfolio where username = ? and currency = ?;";
+		jdbcTemplate.update(sql,user.getUsername(),cryptocurrencySymbol);
+
 	}
 
 }

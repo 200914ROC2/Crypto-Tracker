@@ -38,12 +38,12 @@ public class UserService {
 		return userDao.getPortfolio(user);
 	}
 
-	public void addToPortfolio(User user, String cryptocurrency) {
-		userDao.addToPortfolio(user, cryptocurrency);
+	public void addToPortfolio(User user, String symbol) {
+		userDao.addToPortfolio(user, symbol);
 	}
 
-	public List<String> removeFromPortfolio(User user, String cryptocurrency) {
-		return userDao.removeFromPortfolio(user, cryptocurrency);
+	public void removeFromPortfolio(User user, String symbol) {
+		userDao.removeFromPortfolio(user, symbol);
 	}
 
 }

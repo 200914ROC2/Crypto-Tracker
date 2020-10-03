@@ -51,13 +51,9 @@ public class UserController {
 
 	// api/portfolio/remove Delete {"symbol"}
 	@DeleteMapping("/portfolio/remove")
-	public List<String> removeFromPortfolio(@RequestParam("symbol") String symbol,HttpSession session) {
-		List<String> result = null;
+	public void removeFromPortfolio(HttpSession session, @RequestParam("symbol") String symbol) {
 		User user = (User)session.getAttribute("user");
-		if(user != null){
-			result = userService.removeFromPortfolio(user, symbol);
-		}
-		return result;
+		userService.removeFromPortfolio(user, symbol);
 	}
 
 	// api/login Post {"username", "password"} returns {"username"}
@@ -72,7 +68,7 @@ public class UserController {
 
 	@GetMapping("/logout")
 	public void logout(HttpSession session){
-		session.invalidate();
+		session.removeAttribute("user");
 	}
 
 }
