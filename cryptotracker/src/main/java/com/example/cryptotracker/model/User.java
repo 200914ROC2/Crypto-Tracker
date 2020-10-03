@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class User {
@@ -20,18 +19,6 @@ public class User {
     private String email;
 
     private List<String> portfolio;
-
-//    public User(@JsonProperty("id") int id,
-//                @JsonProperty("username") String name,
-//                @JsonProperty("password") String password,
-//                @JsonProperty("email") String email,
-//                @JsonProperty("portfolio") String[] portfolio) {
-//        this.id = id;
-//        this.username = name;
-//        this.password = password;
-//        this.email = email;
-//        this.portfolio = Arrays.asList(portfolio);
-//    }
 
     public User(@JsonProperty("id") int id,
             @JsonProperty("username") String name,

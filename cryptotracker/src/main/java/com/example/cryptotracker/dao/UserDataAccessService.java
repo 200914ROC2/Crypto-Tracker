@@ -92,8 +92,8 @@ public class UserDataAccessService implements UserDao {
 	public void addToPortfolio(User user, String cryptocurrency) {
 		String sql = "insert into portfolio (record_id, username, currency) values (default, '?','?');";
 		
-		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);		
-		
+		jdbcTemplate.update(sql,user.getUsername(),cryptocurrency);
+
 	}
 	
 //	String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
