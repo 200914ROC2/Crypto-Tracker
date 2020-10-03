@@ -21,18 +21,14 @@ public class PasswordHasher {
         return hashedPassword;
     }
 
-    public static boolean checkPass(String password, String hashedPass){
-        boolean success = false;
+    public static String getHashed(String password, String hashedPass){
         String inputHashPass;
         String saltString = hashedPass.replaceAll("\\w+[.]","");
-        hashedPass = hashedPass.replaceAll("[.].+","");
         byte[] salt = Base64.getDecoder().decode(saltString);
-        inputHashPass = getSecurePassword(password,salt);
-        if(hashedPass.equals(inputHashPass)){
-            success = true;
-        }
-        return success;
+        inputHashPass = getSecurePassword(password,salt) +"."+saltString;
+        return inputHashPass;
     }
+
 
     private static String getSecurePassword(String passwordToHash, byte[] salt)
     {
