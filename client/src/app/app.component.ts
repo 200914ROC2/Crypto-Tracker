@@ -8,9 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   user = "User";
+  loggedIn = false;
   
   logout() {
-    this.user = null;
+    this.user = "User";
   }
 
   ngOnInit() {

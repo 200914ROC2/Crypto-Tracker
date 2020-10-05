@@ -12,15 +12,13 @@ import { CurrenciesModule } from './currencies/currencies.module';
 import { CurrencyPreviewModule } from './currency-preview/currency-preview.module';
 import { CurrencyDetailsModule } from './currency-details/currency-details.module';
 import { PlotModule } from './plot/plot.module';
-import { PortfolioComponent } from './portfolio/portfolio-home/portfolio.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    PortfolioComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
