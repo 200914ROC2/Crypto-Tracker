@@ -16,22 +16,21 @@ public class User {
     @NotBlank
     private String password;
 
-    @NotBlank
     private String email;
 
-    private List<Crypto> portfolio;
+    private List<String> portfolio;
 
     public User(@JsonProperty("id") int id,
-                @JsonProperty("username") String name,
-                @JsonProperty("password") String password,
-                @JsonProperty("email") String email) {
-        this.id = id;
-        this.username = name;
-        this.password = password;
-        this.email = email;
-        portfolio = new ArrayList<>();
-    }
-
+            @JsonProperty("username") String name,
+            @JsonProperty("password") String password,
+            @JsonProperty("email") String email) {
+    this.id = id;
+    this.username = name;
+    this.password = password;
+    this.email = email;
+    this.portfolio = new ArrayList<String>();
+}
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -44,7 +43,7 @@ public class User {
         this.email = email;
     }
 
-    public void setPortfolio(List<Crypto> portfolio) {
+    public void setPortfolio(List<String> portfolio) {
         this.portfolio = portfolio;
     }
 
@@ -60,15 +59,26 @@ public class User {
         return email;
     }
 
-    public void addToPortfolio(Crypto crypto){
-        portfolio.add(crypto);
+    public void addToPortfolio(String cryptocurrency){
+        portfolio.add(cryptocurrency);
     }
 
-    public List<Crypto> getPortfolio() {
+    public List<String> getPortfolio() {
         return portfolio;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", portfolio=" + portfolio +
+                '}';
     }
 }
