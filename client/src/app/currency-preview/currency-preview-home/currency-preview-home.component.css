@@ -1,5 +1,12 @@
+.card {
+    transform: scale(1);
+    transition: transform .5s ease-out;
+}
+
 .card:hover {
     cursor: pointer;
+    transform: scale(1.03);
+    transition: transform .5s ease-out;
 }
 
 .preview-text-container {

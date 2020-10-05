@@ -3,14 +3,27 @@
         <form>
             <div class="row">
                 <div class="col-2"></div>
-                <div class="col-6">
-                    <app-input [type]="'text'" [label]="'Filter Currencies'" (typed)="setFilterText($event)"></app-input>
-                </div>
-                <div class="col-1 button-container pb-3">
-                    <app-button type="submit" (clicked)="setFilteredCurrencies()" content="Search"></app-button>
-                </div>
-                <div class="col-1 button-container pb-3">
-                    <app-button type="button" (clicked)="resetCurrencySearch()" content="Reset"></app-button>
+                <div class="col-8">
+                    <div class="card shadow rounded-0 border-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="card-title text-center">Click on a Currency to View Details!</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <app-input type="text" label="Find Currency By Symbol" (typed)="setFilterText($event)"></app-input>
+                                </div>
+                                <div class="col-2 button-container pb-3">
+                                    <app-button type="submit" (clicked)="setFilteredCurrencies()" content="Search"></app-button>
+                                </div>
+                                <div class="col-2 button-container pb-3">
+                                    <app-button type="button" (clicked)="resetCurrencySearch()" content="Reset"></app-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-2"></div>
             </div>

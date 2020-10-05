@@ -1,12 +1,10 @@
 <div class="container">
-    <div class="row mb-3">
-        <div class="col-12">
-            <h4 class="text-center">Register A New Account</h4>
-        </div>
-    </div>
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card shadow rounded-0 border-0">
+                <h5 class="card-header rounded-0 bg-info text-white text-center">
+                    Register A New Account
+                </h5>
                 <div class="card-body">
                     <form>
                         <app-input label="Username" type="text" (typed)="setUsername($event)"></app-input>
@@ -14,7 +12,7 @@
                         <app-input label="Password" type="password" (typed)="setPassword($event)"></app-input>
                         <app-input label="Confirm Password" type="password" (typed)="setConfirmPassword($event)"></app-input>
                         <app-button content="Register" type="submit" (clicked)="register()"></app-button>
-                      </form>
+                    </form>
                 </div>
             </div>
         </div>

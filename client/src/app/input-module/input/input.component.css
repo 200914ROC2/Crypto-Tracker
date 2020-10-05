@@ -1,0 +1,25 @@
+.form-group {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid teal;
+}
+
+input:focus {
+    box-shadow: none;
+}
+
+label {
+    transform: scale(1);
+    transform-origin: 0 0;
+    transition: transform 0.5s ease-out;
+}
+
+input:focus + label {
+    transform: scale(1.2);
+    transform-origin: 0 0;
+    transition: transform 0.5s ease-out;
+}
