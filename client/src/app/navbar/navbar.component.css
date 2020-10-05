@@ -1,5 +1,5 @@
 .navbar {
-    background-color: rgb(7, 163, 28);
+    background-color: rgb(7, 0, 37);
 }
 
 .nav-link {
@@ -10,4 +10,25 @@
 .nav-link:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-out;
+}
+
+.navbar-middle {
+    flex-grow: 1
+}
+
+.navbar-left, .navbar-right {
+    width: 8rem;
+}
+
+@media (min-width: 992px) {
+    .navbar-right {
+        width: 0;
+    }
+    .navbar-left, .navbar-collapse {
+        width: 20rem;
+    }
+}
+
+.navbar-collapse {
+    flex-grow: 0;
 }

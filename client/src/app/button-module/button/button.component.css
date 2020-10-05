@@ -20,3 +20,9 @@ button:active {
     top: -1px;
     box-shadow: 0 1px rgb(1,56,1);
 }
+
+button:focus-visible {
+    border: 4px solid rgb(1,56,1);
+    box-shadow: none;
+    top: -2px;
+}
