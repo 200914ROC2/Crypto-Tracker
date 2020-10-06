@@ -18,9 +18,10 @@ export class PortfolioComponent implements OnInit {
     this.getCurrenciesService.getCurrencies().subscribe((fullCurrencyList: any) => {
       this.getCurrenciesService.getPortfolio().subscribe((response) => {
         const portfolioCurrencies = [];
+        console.log(response);
         for (let symbol of response) {
           for (let currency of fullCurrencyList.Data) {
-            if (currency.name === symbol) {
+            if (currency.CoinInfo.Name === symbol) {
               portfolioCurrencies.push(currency);
             }
           }

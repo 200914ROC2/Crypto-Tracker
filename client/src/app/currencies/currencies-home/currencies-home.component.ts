@@ -9,6 +9,25 @@ export class CurrenciesHomeComponent implements OnInit {
 
   constructor() { }
 
+  showDetails: boolean = false;
+  chosenName: string = "";
+  chosenSymbol: string = "";
+  chosenImageUrl: string = "";
+
+  renderDetails(details: any) {
+    this.chosenName = details.name;
+    this.chosenSymbol = details.symbol;
+    this.chosenImageUrl = details.imageUrl;
+    this.showDetails = true;
+  }
+
+  renderList() {
+    this.chosenName = "";
+    this.chosenSymbol = "";
+    this.chosenImageUrl = "";
+    this.showDetails = false;
+  }
+
   ngOnInit(): void {
   }
 
