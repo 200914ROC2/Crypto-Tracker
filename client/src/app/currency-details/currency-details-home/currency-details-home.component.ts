@@ -56,7 +56,7 @@ export class CurrencyDetailsHomeComponent implements OnInit {
   }
 
   handleRedirectLogin() {
-
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit(): void {
