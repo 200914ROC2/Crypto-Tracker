@@ -40,7 +40,7 @@ export class GetCurrenciesService {
   }
 
   insertCurrency(data): Observable<any> {
-    return this.http.post(Url, data);
+    return this.http.post("/api/portfolio/add?symbol=" + data, data);
   }
 
   deleteCurrency(id): Observable<any> {
