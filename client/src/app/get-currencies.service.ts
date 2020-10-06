@@ -44,7 +44,7 @@ export class GetCurrenciesService {
   }
 
   deleteCurrency(id): Observable<any> {
-    return this.http.delete(`/api/portfolio/delete?symbol=${id}`);
+    return this.http.delete(`/api/portfolio/remove?symbol=${id}`);
   }
 }
 
