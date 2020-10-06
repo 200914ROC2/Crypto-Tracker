@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-login-home',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-home.component.css']
 })
 export class LoginHomeComponent implements OnInit {
+  @Output() login = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   username = "";
   password = "";
@@ -20,12 +23,19 @@ export class LoginHomeComponent implements OnInit {
     this.password = password;
   }
 
-  login() {
+  handleLogin() {
     const data = {
       username: this.username,
       password: this.password
     };
-    console.log(data);
+    try {
+      this.userService.loginUser(data).subscribe((response: any) => {
+        this.userService.user = response.username;
+        this.router.navigateByUrl('');
+      })
+    } catch (error: any) {
+      console.log(error);
+    }
   }
 
   ngOnInit(): void {

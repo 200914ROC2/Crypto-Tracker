@@ -7,13 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  user = "User";
-  
-  logout() {
-    this.user = null;
-  }
 
   ngOnInit() {
-    
   }
 }
