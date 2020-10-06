@@ -1,4 +1,7 @@
 <div class="container mb-5">
+    <div *ngIf="loggedIn">
+        <app-portfolio></app-portfolio>
+    </div> 
     <app-browse *ngIf="!showDetails" (selected)="renderDetails($event)"></app-browse>
 
     <app-currency-details-home *ngIf="showDetails" [name]="chosenName" [symbol]="chosenSymbol" [imageUrl]="chosenImageUrl" (back)="renderList()"></app-currency-details-home>

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   @Input() user = null;
   @Input() logout = null;
+  @Input() loggedIn = false;
 
   constructor(private router: Router) { }
 
