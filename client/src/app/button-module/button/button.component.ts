@@ -33,9 +33,7 @@ export class ButtonComponent implements OnInit {
 
   // }
 
-  // addToPortfolio() {
-
-  // }
+  
 
   // deleteFromPortfolio() {
 
