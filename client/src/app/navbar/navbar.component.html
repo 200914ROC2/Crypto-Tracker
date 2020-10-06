@@ -5,8 +5,8 @@
   
   <div class="navbar-middle d-flex justify-content-center">
     <span *ngIf="this.userService.user" class="navbar-brand">Welcome {{ this.userService.user }}!</span>
+    <span *ngIf="!this.userService.user" class="navbar-brand">Welcome User!</span>
   </div>
-  
 
   <div class="navbar-right d-flex justify-content-end">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
