@@ -19,7 +19,11 @@
                         <p class="card-text">{{ name }}</p>
                         <p class="card-text">Current price: {{ price | currency:'USD'}}</p>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-3 d-flex justify-content-end">
+                        <app-button *ngIf="addCurrency" content="Add to portfolio" type="button" (clicked)="handleAddCurrency($event)"></app-button>
+                        <app-button *ngIf="removeCurrency" content="Remove from portfolio" type="button" (clicked)="handleRemoveCurrency($event)"></app-button>
+                        <app-button *ngIf="redirectLogin" content="Login to add to portfolio" type="button" (clicked)="handleRedirectLogin()"></app-button>
+                    </div>
                 </div>
             </div>
           </div>

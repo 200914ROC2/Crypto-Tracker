@@ -1,1 +1,25 @@
-<p>portfolio works!</p>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow rounded-0 border-0">
+            <h5 class="card-header rounded-0 bg-info text-white text-center">
+                Your Portfolio
+            </h5>
+            <div class="card-body">
+                <h5 class="card-title text-center">Click on a Currency to View Details!</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3" *ngFor="let currency of currencies">
+    <div class="col-12">
+        <app-currency-preview-home
+        [name]="currency.CoinInfo.FullName" 
+        [symbol]="currency.CoinInfo.Name" 
+        [imageUrl]="'https://cryptocompare.com' + currency.CoinInfo.ImageUrl"
+        [price]="currency.RAW.USD.PRICE"
+        (clicked)="viewDetails($event)"
+        >
+        </app-currency-preview-home>
+    </div>
+</div>

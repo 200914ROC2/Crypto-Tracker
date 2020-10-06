@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeHomeComponent } from './home-home/home-home.component';
 import { BrowseModule } from '../browse/browse.module';
+import { PortfolioModule } from '../portfolio/portfolio.module'
 import { CurrencyDetailsModule } from '../currency-details/currency-details.module';
 
 
@@ -14,6 +15,7 @@ import { CurrencyDetailsModule } from '../currency-details/currency-details.modu
     CommonModule,
     HomeRoutingModule,
     BrowseModule,
+    PortfolioModule,
     CurrencyDetailsModule
   ]
 })
