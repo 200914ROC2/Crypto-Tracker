@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetCurrenciesService } from '../../get-currencies.service';
 import * as moment from 'moment';
 
@@ -11,10 +12,13 @@ export class CurrencyDetailsHomeComponent implements OnInit {
   @Input() name = "";
   @Input() symbol = "";
   @Input() imageUrl = "";
+  @Input() addCurrency = false;
+  @Input() removeCurrency = false;
+  @Input() redirectLogin = false;
 
   @Output() back = new EventEmitter<boolean>();
 
-  constructor(private getCurrenciesService: GetCurrenciesService) { }
+  constructor(private router: Router, private getCurrenciesService: GetCurrenciesService) { }
   price = "";
   render24Hour: boolean = false;
   x24Hour: Array<string> = [];
@@ -39,6 +43,18 @@ export class CurrencyDetailsHomeComponent implements OnInit {
     this.render30Day = true;
   }
 
+  handleAddCurrency() {
+
+  }
+
+  handleRemoveCurrency() {
+
+  }
+
+  handleRedirectLogin() {
+    
+  }
+
   ngOnInit(): void {
     this.getCurrenciesService.get24HourData(this.symbol).subscribe((response: any) => {
       for (let data of response.Data.Data) {
@@ -57,7 +73,6 @@ export class CurrencyDetailsHomeComponent implements OnInit {
         this.y30Day.push(data.close);
       }
       this.price = this.y30Day[this.y30Day.length - 1].toString();
-      // this.render30Day = true;
     });
   }
 
