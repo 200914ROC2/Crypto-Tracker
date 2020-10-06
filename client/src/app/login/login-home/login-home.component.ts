@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 
@@ -8,7 +8,6 @@ import { UserService } from '../../user.service';
   styleUrls: ['./login-home.component.css']
 })
 export class LoginHomeComponent implements OnInit {
-  @Output() login = new EventEmitter<string>();
 
   constructor(private router: Router, private userService: UserService) { }
 
