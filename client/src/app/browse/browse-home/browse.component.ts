@@ -45,10 +45,6 @@ export class BrowseComponent implements OnInit {
   }
 
   resetCurrencySearch() {
-    // console.log('inside resetCurrencySearch()')
-    // console.log('filterText before: ' + this.filterText);
-    // this.filterText = null;
-    // console.log('filterText after: ' + this.filterText);
     this.filteredCurrencies = this.currencies;
   }
 

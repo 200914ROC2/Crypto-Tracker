@@ -31,12 +31,6 @@
     </div>
 </div>
 
-<!-- <div *ngIf="'logoUrl'" style="display: flex; justify-content: space-around;">
-    <div>{{ filterText }}</div>
-    <img [src]="logoUrl" />
-    <div>{{ price }}</div>
-</div><br> -->
-
 <div class="row mb-3" *ngFor="let currency of filteredCurrencies">
     <div class="col-12">
         <app-currency-preview-home
@@ -46,6 +40,6 @@
         [price]="currency.RAW.USD.PRICE"
         (clicked)="viewDetails($event)"
         >
-    </app-currency-preview-home>
+        </app-currency-preview-home>
     </div>
 </div>

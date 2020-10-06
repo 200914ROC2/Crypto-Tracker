@@ -1,10 +1,13 @@
 <div class="container mb-5">
-    <div *ngIf="loggedIn">
-        <app-portfolio></app-portfolio>
-    </div> 
-    <app-browse *ngIf="!showDetails" (selected)="renderDetails($event)"></app-browse>
+    <div *ngIf="this.userService.user">
+        <app-portfolio *ngIf="!showDetails" (selected)="renderDetails($event)"></app-portfolio>
+        <app-currency-details-home *ngIf="showDetails" [removeCurrency]="true" [name]="chosenName" [symbol]="chosenSymbol" [imageUrl]="chosenImageUrl" (back)="renderList()"></app-currency-details-home>
+    </div>
 
-    <app-currency-details-home *ngIf="showDetails" [name]="chosenName" [symbol]="chosenSymbol" [imageUrl]="chosenImageUrl" (back)="renderList()"></app-currency-details-home>
+    <div *ngIf="!this.userService.user">
+        <app-browse *ngIf="!showDetails" (selected)="renderDetails($event)"></app-browse>
+        <app-currency-details-home *ngIf="showDetails" [redirectLogin]="true" [name]="chosenName" [symbol]="chosenSymbol" [imageUrl]="chosenImageUrl" (back)="renderList()"></app-currency-details-home>
+    </div>
 </div>
 
 

@@ -43,20 +43,20 @@ export class CurrencyDetailsHomeComponent implements OnInit {
     this.render30Day = true;
   }
 
-  handleAddCurrency(symbol) {
-    this.getCurrenciesService.insertCurrency(symbol).subscribe((response: any) => {
+  handleAddCurrency() {
+    this.getCurrenciesService.insertCurrency(this.symbol).subscribe((response: any) => {
       this.router.navigateByUrl('');
     });
   }
 
-  handleRemoveCurrency(symbol) {
-    this.getCurrenciesService.deleteCurrency(symbol).subscribe((response: any) => {
+  handleRemoveCurrency() {
+    this.getCurrenciesService.deleteCurrency(this.symbol).subscribe((response: any) => {
       this.router.navigateByUrl('');
     });
   }
 
   handleRedirectLogin() {
-    
+
   }
 
   ngOnInit(): void {
