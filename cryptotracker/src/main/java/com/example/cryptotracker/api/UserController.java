@@ -3,12 +3,17 @@ package com.example.cryptotracker.api;
 import com.example.cryptotracker.model.User;
 import com.example.cryptotracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -71,4 +76,8 @@ public class UserController {
 	}
 
 
+	@ExceptionHandler
+	void handleSQLException(SQLException e, HttpServletResponse response) throws IOException {
+	    response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
 }
