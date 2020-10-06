@@ -24,9 +24,8 @@ public class UserDataAccessService implements UserDao {
 		String sqlUserInfo = "insert into users (username,email,hashed_password) values (?,?,?)";
 		
 		jdbcTemplate.update(sqlUserInfo,user.getUsername(),user.getEmail(),user.getPassword());
-
-		User newUser = getUser(user);
 	
+		User newUser = getUser(user);
 		return newUser;
 		
 	}
