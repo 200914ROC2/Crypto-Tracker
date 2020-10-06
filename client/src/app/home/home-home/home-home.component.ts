@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-home-home',
@@ -7,9 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomeHomeComponent implements OnInit {
 
-  @Input() loggedIn;
-
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   showDetails: boolean = false;
   chosenName: string = "";

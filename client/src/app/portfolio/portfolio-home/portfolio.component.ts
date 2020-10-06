@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetCurrenciesService } from '../../get-currencies.service'
 
 @Component({
@@ -8,16 +7,35 @@ import { GetCurrenciesService } from '../../get-currencies.service'
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
+  @Output() selected = new EventEmitter<Object>();
+
+  currencies;
 
   constructor(private getCurrenciesService: GetCurrenciesService) {
   }
 
-  ngOnInit(): void {
-    this.getCurrenciesService.getPortfolio();
+  getPortfolio() {
+    this.getCurrenciesService.getCurrencies().subscribe((fullCurrencyList: any) => {
+      this.getCurrenciesService.getPortfolio().subscribe((response) => {
+        const portfolioCurrencies = [];
+        for (let symbol of response) {
+          for (let currency of fullCurrencyList.Data) {
+            if (currency.name === symbol) {
+              portfolioCurrencies.push(currency);
+            }
+          }
+        }
+        this.currencies = portfolioCurrencies;
+      });
+    });
   }
 
-  getPortfolio(id) {
+  viewDetails(details: any) {
+    this.selected.emit(details);
+  }
 
+  ngOnInit(): void {
+    this.getPortfolio();
   }
 
 }

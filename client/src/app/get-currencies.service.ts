@@ -36,7 +36,7 @@ export class GetCurrenciesService {
   }
 
   getPortfolio(): Observable<any> {
-    return this.http.get(Url);
+    return this.http.get("/api/portfolio");
   }
 
   insertCurrency(data): Observable<any> {
