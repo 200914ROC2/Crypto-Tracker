@@ -8,14 +8,19 @@ import { UserService } from '../user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  // @Input() user = null;
-  // @Input() logout = null;
 
   constructor(private router: Router, public userService: UserService) { }
 
   handleLogout() {
-    this.userService.user = null;
-    this.router.navigateByUrl('');
+    try {
+      this.userService.logoutUser().subscribe((response: any) => {
+        this.userService.user = null;
+        this.router.navigateByUrl('');
+      });
+    } catch (error: any) {
+      console.log(error);
+    }
+    
   }
 
   ngOnInit(): void {

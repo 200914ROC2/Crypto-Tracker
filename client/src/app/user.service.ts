@@ -16,4 +16,8 @@ export class UserService {
   loginUser(user: any) {
     return this.http.post("/api/login", user);
   }
+
+  logoutUser() {
+    return this.http.get("/api/logout");
+  }
 }
