@@ -51,7 +51,7 @@ export class CurrencyDetailsHomeComponent implements OnInit {
 
   handleRemoveCurrency() {
     this.getCurrenciesService.deleteCurrency(this.symbol).subscribe((response: any) => {
-      this.router.navigateByUrl('');
+      this.back.emit(true);
     });
   }
 
