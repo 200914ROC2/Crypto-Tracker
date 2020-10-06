@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-currencies-home',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrenciesHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   showDetails: boolean = false;
   chosenName: string = "";
@@ -29,6 +31,9 @@ export class CurrenciesHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.userService.user) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }
