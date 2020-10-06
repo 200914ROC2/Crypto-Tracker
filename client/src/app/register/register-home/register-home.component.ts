@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-register-home',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   username = "";
   email = "";
@@ -31,13 +33,21 @@ export class RegisterHomeComponent implements OnInit {
   }
 
   register() {
+    if (this.password !== this.confirmPassword) {
+      return console.log("password and confirm password must match");
+    }
     const data = {
       username: this.username,
       email: this.email,
-      password: this.password,
-      confirmPassword: this.confirmPassword
+      password: this.password
     };
-    console.log(data);
+    try {
+      this.userService.registerUser(data).subscribe((response: any) => {
+        this.router.navigateByUrl('/login');
+      })
+    } catch (error: any) {
+      console.log(error);
+    }
   }
 
   ngOnInit(): void {

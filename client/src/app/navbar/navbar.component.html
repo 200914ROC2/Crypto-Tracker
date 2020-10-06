@@ -4,9 +4,9 @@
   </div>  
   
   <div class="navbar-middle d-flex justify-content-center">
-    <span *ngIf="user" class="navbar-brand">Welcome {{ user }}!</span>
+    <span *ngIf="this.userService.user" class="navbar-brand">Welcome {{ this.userService.user }}!</span>
+    <span *ngIf="!this.userService.user" class="navbar-brand">Welcome User!</span>
   </div>
-  
 
   <div class="navbar-right d-flex justify-content-end">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
     
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul *ngIf="!loggedIn" class="navbar-nav ml-auto">
+    <ul *ngIf="!this.userService.user" class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       </li>
@@ -27,7 +27,7 @@
           <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
         </li>
     </ul>
-    <ul *ngIf="loggedIn" class="navbar-nav ml-auto">
+    <ul *ngIf="this.userService.user" class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       </li>
